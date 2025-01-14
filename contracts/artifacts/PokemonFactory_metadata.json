@@ -319,11 +319,11 @@
 			]
 		},
 		"contracts/Pokemon.sol": {
-			"keccak256": "0x715459fbc63a86d18ace9bfab9ca1bf6fa122006a9c4d19fe732c331419e7acd",
+			"keccak256": "0xc3a6b3b6052f9577536e97ea3a0b907bb134451db6b8fb6e8b3f30c9c0819fc0",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://3cc73374dbade834eccb89ed4b40b765ee47e9f3b1f3bceb47840e83df23a9fd",
-				"dweb:/ipfs/QmTuUfjxKYZyvZP5M3wXNbjokXY51X9HNyRJaL15jjbYmH"
+				"bzz-raw://c096dfae12668b8acf21a559d9436aab73d1132c69ae74792ee758eba25e21d9",
+				"dweb:/ipfs/QmYPfGnuuwekqu8UKE7guGcWCcNF5KmM47LBQuXNDSsmJ6"
 			]
 		}
 	},
