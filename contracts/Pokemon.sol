@@ -29,7 +29,7 @@ contract PokemonFactory {
     //Para guardar el dueño de un pokemon, vamos a usar dos mapeos: el primero guardará el rastro de la dirección 
     //que posee ese pokemon y la otra guardará el rastro de cuantos pokemon posee cada propietario.
     mapping (uint => address) public pokemonToOwner;
-    mapping (address => uint) ownerPokemonConunt;
+    mapping (address => uint) ownerPokemonCount;
 
     //Mapping para guardar el nombre del entrenador
     mapping (address => string) public trainerName;
@@ -49,7 +49,7 @@ contract PokemonFactory {
         //se asocia el id del pokemon con el usuario
         pokemonToOwner[id]=msg.sender;
         //Aumentamos la cuenta de pokemons que posee el entrenador
-        ownerPokemonConunt[msg.sender]++;
+        ownerPokemonCount[msg.sender]++;
         //Asociacion de la dirección del usuario con el nombre de entrenador que ha escogido
         trainerName[msg.sender]=_trainerName;
         //para generar eventos a nivel de web3
@@ -80,7 +80,7 @@ contract PokemonFactory {
     //Tambien se pide el elemento que es lo que definira que inicial escoge.(_elemento)
     function createPokemonInitial(string memory _elemento, string calldata _trainerName) public {
         //Cada entrenador solo puede tener un unico inicial
-        require(ownerPokemonConunt[msg.sender] == 0);
+        require(ownerPokemonCount[msg.sender] == 0);
         //se optiene el valor aleatorio de poder
         uint randPoder = _randomPoder(_trainerName);
         //se procesa el elemento

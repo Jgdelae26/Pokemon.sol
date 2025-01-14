@@ -43,7 +43,7 @@
 						"type": "string"
 					}
 				],
-				"name": "createPokemon",
+				"name": "createPokemonInitial",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -319,11 +319,11 @@
 			]
 		},
 		"contracts/Pokemon.sol": {
-			"keccak256": "0xc3a6b3b6052f9577536e97ea3a0b907bb134451db6b8fb6e8b3f30c9c0819fc0",
+			"keccak256": "0x2b036f71ca5862f0458cba8db088d7aefe1ef224681f0c30bab2eab31f6ac587",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://c096dfae12668b8acf21a559d9436aab73d1132c69ae74792ee758eba25e21d9",
-				"dweb:/ipfs/QmYPfGnuuwekqu8UKE7guGcWCcNF5KmM47LBQuXNDSsmJ6"
+				"bzz-raw://54fbc604a5617a2bac782aaf0347e0fa52c062afb8bcc9d916274382b43f781c",
+				"dweb:/ipfs/QmU8bs9tQMdbr8dyVCUZb4G5TDWVRV56GUUL9kWzGwuxa8"
 			]
 		}
 	},

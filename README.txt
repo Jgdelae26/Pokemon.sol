@@ -1,28 +1,17 @@
-REMIX DEFAULT WORKSPACE
+# Desarrollo de la aplicación basada en la blockchain de Ethereum y la guía de CryptoZombies
 
-Remix default workspace is present when:
-i. Remix loads for the very first time 
-ii. A new workspace is created with 'Default' template
-iii. There are no files existing in the File Explorer
+## Punto de partida
 
-This workspace contains 3 directories:
+El usuario, con una dirección en la blockchain, introduce su nombre de entrenador y escoge uno de los tres elementos posibles, obteniendo así uno de los pokémon iniciales basado en el elemento escogido. El poder de este pokémon es aleatorio.
 
-1. 'contracts': Holds three contracts with increasing levels of complexity.
-2. 'scripts': Contains four typescript files to deploy a contract. It is explained below.
-3. 'tests': Contains one Solidity test file for 'Ballot' contract & one JS test file for 'Storage' contract.
+## Aspectos de la implementación en código
 
-SCRIPTS
+Tendremos un array para todos los pokémon que puedan crearse. En el array constarán: el nombre, elemento, velocidad, ataque, defensa, ataque especial y defensa especial. Podrá haber pokémon iguales. El nombre y el elemento del inicial irán definidos por la elección del usuario al inicio, al igual que su poder, que dependerá pseudoaleatoriamente del nickname que haya escogido. Inicialmente, los stats (ataque, defensa, etc.) tendrán un valor numérico del 0 al 9, sacado del valor (poder) mencionado anteriormente.
 
-The 'scripts' folder has four typescript files which help to deploy the 'Storage' contract using 'web3.js' and 'ethers.js' libraries.
+Para asociar los pokémon a las direcciones de usuario, emplearemos que intrínsecamente cada nuevo elemento (pokémon) tendrá un id correspondiente a la posición que ocupa en el array. Este id irá asociado mediante un mapping a la dirección del usuario. Después, para saber cuántos pokémon tiene un usuario, tendremos otro mapping. También habrá un mapping para asociar la dirección de la blockchain del usuario con su nombre de entrenador.
 
-For the deployment of any other contract, just update the contract's name from 'Storage' to the desired contract and provide constructor arguments accordingly 
-in the file `deploy_with_ethers.ts` or  `deploy_with_web3.ts`
+## Objetivos futuros
 
-In the 'tests' folder there is a script containing Mocha-Chai unit tests for 'Storage' contract.
-
-To run a script, right click on file name in the file explorer and click 'Run'. Remember, Solidity file must already be compiled.
-Output from script will appear in remix terminal.
-
-Please note, require/import is supported in a limited manner for Remix supported modules.
-For now, modules supported by Remix are ethers, web3, swarmgw, chai, multihashes, remix and hardhat only for hardhat.ethers object/plugin.
-For unsupported modules, an error like this will be thrown: '<module_name> module require is not supported by Remix IDE' will be shown.
+- Definir uso del token ERC1155
+- Definir el flujo de la aplicación (intentar sacarle provecho a la blockchain)
+- Funciones
