@@ -26,24 +26,31 @@ contract PokemonFactory {
     //Array de pokemons
     Pokemon[] public pokemons;
 
-    //Para guardar el dueño de un zombi, vamos a usar dos mapeos: el primero guardará el rastro de la dirección 
-    //que posee ese zombi y la otra guardará el rastro de cuantos zombis posee cada propietario.
+    //Para guardar el dueño de un pokemon, vamos a usar dos mapeos: el primero guardará el rastro de la dirección 
+    //que posee ese pokemon y la otra guardará el rastro de cuantos pokemon posee cada propietario.
     mapping (uint => address) public pokemonToOwner;
-    mapping (address => uint) ownerPokemonConunt;
+    mapping (address => uint) ownerPokemonCount;
 
     //Mapping para guardar el nombre del entrenador
     mapping (address => string) public trainerName;
 
+    //Funcion principal para crear pokemons arraigados a un entrenador
     function _createPokemon(string memory _name, string memory _elemento, uint  _poder, string calldata _trainerName) private {
+        //Tratamiento de los stats en funcion de la var aleatoria poder
         uint ataque = _poder % 10;
         uint defensa = (_poder/10) % 10;
         uint ataqueEspecial = (_poder/100) % 10;
         uint defensaEspecial = (_poder/1000) % 10;
         uint velocidad= (_poder/10**4) % 10;
+        //Se aumenta el array de Pokemon
         pokemons.push(Pokemon(_name, _elemento, ataque, defensa, ataqueEspecial, defensaEspecial, velocidad));
+        //Se genera un id correspondiente al orden de creacion del pokemon
         uint id = pokemons.length - 1;
+        //se asocia el id del pokemon con el usuario
         pokemonToOwner[id]=msg.sender;
-        ownerPokemonConunt[msg.sender]++;
+        //Aumentamos la cuenta de pokemons que posee el entrenador
+        ownerPokemonCount[msg.sender]++;
+        //Asociacion de la dirección del usuario con el nombre de entrenador que ha escogido
         trainerName[msg.sender]=_trainerName;
         //para generar eventos a nivel de web3
         emit NewPokemon(id, _name, _poder);
@@ -55,7 +62,7 @@ contract PokemonFactory {
         uint rand = uint(keccak256(abi.encodePacked(_str)));
         return rand % poderModulus;
     }
-
+    //funcion para procesar el elemento y devolver el poquemon correspondiente
     function processElement(string memory _element) public pure returns (string memory) {
         bytes32 elementHash = keccak256(abi.encodePacked(_element));
 
@@ -69,11 +76,16 @@ contract PokemonFactory {
             revert("Elemento no valido. Solo se aceptan 'Agua', 'Fuego' o 'Tierra'.");
         }
     }
-
-    function createPokemon(string memory _elemento, string calldata _trainerName) public {
-        require(ownerPokemonConunt[msg.sender] == 0);
+    //Funcion inicial que pide el nickname de entrenador al usuario, que posteriormente es lo que ramdomizara el poder del inicial.(TrainerName)
+    //Tambien se pide el elemento que es lo que definira que inicial escoge.(_elemento)
+    function createPokemonInitial(string memory _elemento, string calldata _trainerName) public {
+        //Cada entrenador solo puede tener un unico inicial
+        require(ownerPokemonCount[msg.sender] == 0);
+        //se optiene el valor aleatorio de poder
         uint randPoder = _randomPoder(_trainerName);
-         string memory name = processElement(_elemento);
+        //se procesa el elemento
+        string memory name = processElement(_elemento);
+        //se genera el pokemon
         _createPokemon(name, _elemento, randPoder, _trainerName); 
     }
     
