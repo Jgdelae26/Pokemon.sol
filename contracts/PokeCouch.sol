@@ -8,5 +8,5 @@ contract PokeCouch is PokemonFactory {
   //function feed(uint pokeId)   public {
   //  require(msg.sender == pokemonToOwner[pokeId]);
   //}
-//Cosas
+//vamos a empezar a trabajar
 }
