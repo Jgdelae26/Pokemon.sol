@@ -13,5 +13,9 @@ Para asociar los pokémon a las direcciones de usuario, emplearemos que intríns
 ## Objetivos futuros
 
 - Definir uso del token ERC1155
+- o ERC20
 - Definir el flujo de la aplicación (intentar sacarle provecho a la blockchain)
 - Funciones
+  ·Combates aleatorios(Pokemons creados y destruidos)
+  ·Entrenar pokemons
+  ·Capturar pokemons
