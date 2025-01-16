@@ -9,18 +9,19 @@ contract PokemonFactory {
     //para generar eventos a nivel de web3
     event NewPokemon(uint pokemonId, string name, uint poder);
 
-    uint poderDigits = 5;
-    //Nos sirve para limitar el tamaño de la variable poder a 16 digitos
-    uint poderModulus = 10 ** poderDigits;
+    uint8 poderDigits = 5;
+    //Nos sirve para limitar el tamaño de la variable poder a 5 digitos
+    uint32 poderModulus = uint32(10 ** poderDigits);
 
     struct Pokemon {
         string name;
         string elemento;
-        uint ataque;
-        uint defensa;
-        uint ataqueEspecial;
-        uint defensaEspecial;
-        uint velocidad;
+        //uint8 para
+        uint8 ataque;
+        uint8 defensa;
+        uint8 ataqueEspecial;
+        uint8 defensaEspecial;
+        uint8 velocidad;
     }
 
     //Array de pokemons
@@ -35,13 +36,13 @@ contract PokemonFactory {
     mapping (address => string) public trainerName;
 
     //Funcion principal para crear pokemons arraigados a un entrenador
-    function _createPokemon(string memory _name, string memory _elemento, uint  _poder, string calldata _trainerName) private {
+    function _createPokemon(string memory _name, string memory _elemento, uint16  _poder, string calldata _trainerName) private {
         //Tratamiento de los stats en funcion de la var aleatoria poder
-        uint ataque = _poder % 10;
-        uint defensa = (_poder/10) % 10;
-        uint ataqueEspecial = (_poder/100) % 10;
-        uint defensaEspecial = (_poder/1000) % 10;
-        uint velocidad= (_poder/10**4) % 10;
+        uint8 ataque = uint8(_poder % 10);
+        uint8 defensa = uint8((_poder/10) % 10);
+        uint8 ataqueEspecial = uint8((_poder/100) % 10);
+        uint8 defensaEspecial = uint8((_poder/1000) % 10);
+        uint8 velocidad= uint8((_poder/10**4) % 10);
         //Se aumenta el array de Pokemon
         pokemons.push(Pokemon(_name, _elemento, ataque, defensa, ataqueEspecial, defensaEspecial, velocidad));
         //Se genera un id correspondiente al orden de creacion del pokemon
@@ -58,9 +59,9 @@ contract PokemonFactory {
 
     //keccak256 es una version de SHA3 que es una funcion Hash que retorna 256-bits en un formato de numero hexadecimal 
     //que empleamos como pseudo aleatorio, DEBERIAMOS ENCONTRAR UNA MANERA MEJOR 
-    function _randomPoder(string calldata _str) private view returns(uint) {
+    function _randomPoder(string calldata _str) private view returns(uint16) {
         uint rand = uint(keccak256(abi.encodePacked(_str)));
-        return rand % poderModulus;
+        return uint16(rand % poderModulus);
     }
     //funcion para procesar el elemento y devolver el poquemon correspondiente
     function processElement(string memory _element) public pure returns (string memory) {
@@ -82,7 +83,7 @@ contract PokemonFactory {
         //Cada entrenador solo puede tener un unico inicial
         require(ownerPokemonCount[msg.sender] == 0);
         //se optiene el valor aleatorio de poder
-        uint randPoder = _randomPoder(_trainerName);
+        uint16 randPoder = _randomPoder(_trainerName);
         //se procesa el elemento
         string memory name = processElement(_elemento);
         //se genera el pokemon

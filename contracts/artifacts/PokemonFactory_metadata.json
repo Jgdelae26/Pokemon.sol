@@ -88,29 +88,29 @@
 						"type": "string"
 					},
 					{
-						"internalType": "uint256",
+						"internalType": "uint8",
 						"name": "ataque",
-						"type": "uint256"
+						"type": "uint8"
 					},
 					{
-						"internalType": "uint256",
+						"internalType": "uint8",
 						"name": "defensa",
-						"type": "uint256"
+						"type": "uint8"
 					},
 					{
-						"internalType": "uint256",
+						"internalType": "uint8",
 						"name": "ataqueEspecial",
-						"type": "uint256"
+						"type": "uint8"
 					},
 					{
-						"internalType": "uint256",
+						"internalType": "uint8",
 						"name": "defensaEspecial",
-						"type": "uint256"
+						"type": "uint8"
 					},
 					{
-						"internalType": "uint256",
+						"internalType": "uint8",
 						"name": "velocidad",
-						"type": "uint256"
+						"type": "uint8"
 					}
 				],
 				"stateMutability": "view",
@@ -319,11 +319,11 @@
 			]
 		},
 		"contracts/Pokemon.sol": {
-			"keccak256": "0x2b036f71ca5862f0458cba8db088d7aefe1ef224681f0c30bab2eab31f6ac587",
+			"keccak256": "0xea49be3bc2897d6a8d95099ce206b852747a840c54710f6a12d59164bf08f380",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://54fbc604a5617a2bac782aaf0347e0fa52c062afb8bcc9d916274382b43f781c",
-				"dweb:/ipfs/QmU8bs9tQMdbr8dyVCUZb4G5TDWVRV56GUUL9kWzGwuxa8"
+				"bzz-raw://827fca8da111e51a754679ff57b1a7172b7e85476bd5845612464b77945d7be4",
+				"dweb:/ipfs/QmWwNQ6rpUpma4MBSYyv1ZzYbUkRrhxqdEsZyPFhMqL2pR"
 			]
 		}
 	},
