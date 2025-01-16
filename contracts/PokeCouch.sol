@@ -4,6 +4,7 @@ pragma solidity ^0.8.20;
 import "./Pokemon.sol";
 
 contract PokeCouch is PokemonFactory {
+  
 
   //function feed(uint pokeId)   public {
   //  require(msg.sender == pokemonToOwner[pokeId]);
@@ -20,7 +21,7 @@ contract PokeCouch is PokemonFactory {
 
     // Generar un Pokémon enemigo aleatorio
     string memory nombreEnemigo = "PokemonSalvaje";
-    uint poderEnemigo = pokemon._randomPoder("Enemigo");
+    uint poderEnemigo = Pokemon._randomPoder("Enemigo");
     uint ataqueEnemigo = poderEnemigo % 10;
     uint defensaEnemigo = (poderEnemigo / 10) % 10;
     uint velocidadEnemigo = (poderEnemigo / 100) % 10;

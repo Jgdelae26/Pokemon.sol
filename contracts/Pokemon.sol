@@ -89,4 +89,22 @@ contract PokemonFactory {
         _createPokemon(name, _elemento, randPoder, _trainerName); 
     }
     
+    //Funcion para crear pokemons salvajes(_trainerName se usa para generar valores aleatorios con el nombre del entrenador)
+    function createEnemyPokemon(string calldata _trainerName) public view{
+        
+        string[] Species = []
+
+        uint poderEnemigo = _randomPoder(_trainerName);
+        //Estadisticas pokemon
+        uint ataqueEnemigo = poderEnemigo % 10;
+        uint defensaEnemigo = (poderEnemigo / 10) % 10;
+        uint velocidadEnemigo = (poderEnemigo / 100) % 10;
+        uint ataqueEspecialEnemigo = (poderEnemigo/100) % 10;
+        uint defensaEspecialEnemigo = (poderEnemigo/1000) % 10;
+        
+        //Se aumenta el array de Pokemon
+        pokemons.push(Pokemon(_name, _elemento, ataqueEnemigo, defensaEnemigo, ataqueEspecialEnemigo, 
+        defensaEspecialEnemigo, velocidadEnemigo));
+        
+    }
 }
