@@ -168,7 +168,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/Pokemon.sol": "PokemonFactory"
+			"contracts/PokemonFactory.sol": "PokemonFactory"
 		},
 		"evmVersion": "cancun",
 		"libraries": {},
@@ -318,7 +318,7 @@
 				"dweb:/ipfs/QmPFKL2r9CBsMwmUqqdcFPfHZB2qcs9g1HDrPxzWSxomvy"
 			]
 		},
-		"contracts/Pokemon.sol": {
+		"contracts/PokemonFactory.sol": {
 			"keccak256": "0xea49be3bc2897d6a8d95099ce206b852747a840c54710f6a12d59164bf08f380",
 			"license": "GPL-3.0",
 			"urls": [
