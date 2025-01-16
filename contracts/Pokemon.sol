@@ -92,8 +92,8 @@ contract PokemonFactory {
     //Funcion para crear pokemons salvajes(_trainerName se usa para generar valores aleatorios con el nombre del entrenador)
     function createEnemyPokemon(string calldata _trainerName) public {
         // Definimos los nombres de las especies y sus elementos
-        string[] memory _Species = ["Ignis","Aqualis","Terranox"];
-        string[] memory _Element = ["Fuego","Agua","Tierra"];
+        string[3] memory species = ["Ignis","Aqualis","Terranox"];
+        string[3] memory element = ["Fuego","Agua","Tierra"];
 
         //Poder aleatorio
         uint poderEnemigo = _randomPoder(_trainerName);
@@ -106,10 +106,10 @@ contract PokemonFactory {
         uint defensaEspecialEnemigo = (poderEnemigo/1000) % 10;
         
         // Elegimos una especie y su elemento de forma pseudoaleatoria
-        uint specieIndex = poderEnemigo % _Species.length;
+        uint specieIndex = poderEnemigo % species.length;
 
         //Se aumenta el array de Pokemon
-        pokemons.push(Pokemon(_Species[specieIndex], _Element[specieIndex], ataqueEnemigo, defensaEnemigo, ataqueEspecialEnemigo, 
+        pokemons.push(Pokemon(species[specieIndex], element[specieIndex], ataqueEnemigo, defensaEnemigo, ataqueEspecialEnemigo, 
         defensaEspecialEnemigo, velocidadEnemigo));
         
     }
