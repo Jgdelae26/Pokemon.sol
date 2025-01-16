@@ -8,6 +8,10 @@ contract PokeCouch is PokemonFactory {
   //function feed(uint pokeId)   public {
   //  require(msg.sender == pokemonToOwner[pokeId]);
   //}
-//vamos a empezar a trabajar
-//otro cambio sin sync
+  function battle(uint _pokemonId) view  public {
+    // Verificar que el ID del Pokémon sea válido
+    require(_pokemonId < pokemons.length, "ID de Pokemon invalido.");
+    // Verificar que el Pokémon pertenece al usuario que llama
+    require(pokemonToOwner[_pokemonId] == msg.sender, "No eres el propietario de este Pokemon.");
+  }
 }
