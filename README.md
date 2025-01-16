@@ -19,3 +19,8 @@ Para asociar los pokémon a las direcciones de usuario, emplearemos que intríns
   ·Combates aleatorios(Pokemons creados y destruidos)
   ·Entrenar pokemons
   ·Capturar pokemons
+
+## Token ERC1155
+Es nuestra mejor opcion ya que auna las caracteristicas del token ERC20(token fungible) y ERC721(NFT) Entonces es conveniente xq se pueden mintear(acuñar) pokemons unicos, pero que se puden repetir, Ejemplo práctico:
+Existen Charizards y Squirtels pues estos son una especie unica pero en la que pude haber varios Charizards y Squirtels.
+
