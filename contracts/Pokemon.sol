@@ -123,6 +123,7 @@ contract PokemonFactory {
         
     }
     function _removePokemon(uint _id) public {
+        // Verificar que el ID del Pokémon sea válido
         require(_id >= 0 && _id < pokemons.length, "ID de Pokemon invalido.");
         
         if (_id != pokemons.length - 1) {
