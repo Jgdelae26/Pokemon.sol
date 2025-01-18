@@ -96,4 +96,8 @@ contract PokeCouch is PokemonFactory {
         pokemon.defensa += rand;
         pokemon.hpPokemon += rand;
     }
+
+    function capturePokemon(uint _enemyId) public {
+            
+    }
 }
