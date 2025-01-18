@@ -114,6 +114,12 @@ contract PokemonFactory {
         //Se aumenta el array de Pokemon
         pokemons.push(Pokemon(species[specieIndex], element[specieIndex], hpEnemigo, ataqueEnemigo, defensaEnemigo, ataqueEspecialEnemigo, 
         defensaEspecialEnemigo, velocidadEnemigo));
+
+        //Se genera un id correspondiente al orden de creacion del pokemon
+        uint id = pokemons.length - 1;
+
+        //para generar eventos a nivel de web3
+        emit NewPokemon(id, species[specieIndex], poderEnemigo);
         
     }
 }
