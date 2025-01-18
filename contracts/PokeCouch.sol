@@ -10,7 +10,7 @@ contract PokeCouch is PokemonFactory {
   //  require(msg.sender == pokemonToOwner[pokeId]);
   //}
 
-  function battle(uint _pokemonId) view public {
+  function battle(uint _pokemonId) public {
     // Verificar que el ID del Pokémon sea válido
     require(_pokemonId < pokemons.length, "ID de Pokemon invalido.");
     // Verificar que el Pokémon pertenece al usuario que llama
@@ -19,11 +19,6 @@ contract PokeCouch is PokemonFactory {
     // Obtener el Pokémon del jugador
     Pokemon storage pokemonJugador = pokemons[_pokemonId];
 
-    // Generar un Pokémon enemigo aleatorio
-    string memory nombreEnemigo = "PokemonSalvaje";
-    uint poderEnemigo = Pokemon._randomPoder("Enemigo");
-    uint ataqueEnemigo = poderEnemigo % 10;
-    uint defensaEnemigo = (poderEnemigo / 10) % 10;
-    uint velocidadEnemigo = (poderEnemigo / 100) % 10;
+    
   }
 }
