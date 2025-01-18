@@ -6,6 +6,33 @@
 	"output": {
 		"abi": [
 			{
+				"inputs": [],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					}
+				],
+				"name": "OwnableInvalidOwner",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "OwnableUnauthorizedAccount",
+				"type": "error"
+			},
+			{
 				"anonymous": false,
 				"inputs": [
 					{
@@ -31,6 +58,25 @@
 				"type": "event"
 			},
 			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "previousOwner",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "OwnershipTransferred",
+				"type": "event"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "string",
@@ -46,6 +92,53 @@
 				"name": "createPokemonInitial",
 				"outputs": [],
 				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "entrenadores",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "cuentaVictorias",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "cuentaDerrtas",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "numPokemons",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "owner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -86,6 +179,16 @@
 						"internalType": "string",
 						"name": "elemento",
 						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "readyTime",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint8",
+						"name": "level",
+						"type": "uint8"
 					},
 					{
 						"internalType": "uint8",
@@ -136,6 +239,13 @@
 				"type": "function"
 			},
 			{
+				"inputs": [],
+				"name": "renounceOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "address",
@@ -153,11 +263,46 @@
 				],
 				"stateMutability": "view",
 				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "transferOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
 			}
 		],
 		"devdoc": {
+			"errors": {
+				"OwnableInvalidOwner(address)": [
+					{
+						"details": "The owner is not a valid owner account. (eg. `address(0)`)"
+					}
+				],
+				"OwnableUnauthorizedAccount(address)": [
+					{
+						"details": "The caller account is not authorized to perform an operation."
+					}
+				]
+			},
 			"kind": "dev",
-			"methods": {},
+			"methods": {
+				"owner()": {
+					"details": "Returns the address of the current owner."
+				},
+				"renounceOwnership()": {
+					"details": "Leaves the contract without owner. It will not be possible to call `onlyOwner` functions. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby disabling any functionality that is only available to the owner."
+				},
+				"transferOwnership(address)": {
+					"details": "Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner."
+				}
+			},
 			"version": 1
 		},
 		"userdoc": {
@@ -319,11 +464,11 @@
 			]
 		},
 		"contracts/PokemonFactory.sol": {
-			"keccak256": "0xea49be3bc2897d6a8d95099ce206b852747a840c54710f6a12d59164bf08f380",
+			"keccak256": "0xf621837de0d7819df116d85f44b16910bcf13055338339388d3400420feb1311",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://827fca8da111e51a754679ff57b1a7172b7e85476bd5845612464b77945d7be4",
-				"dweb:/ipfs/QmWwNQ6rpUpma4MBSYyv1ZzYbUkRrhxqdEsZyPFhMqL2pR"
+				"bzz-raw://b31455ddbdb0d22edf61bb3ff8647863413bbf63e7b2d3fa1783bd155df2959a",
+				"dweb:/ipfs/Qmbh8R9yheHnhge2bPTehxJe1VSvXFgmM5EpzjTa6Vm2fE"
 			]
 		}
 	},

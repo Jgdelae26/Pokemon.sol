@@ -5,17 +5,26 @@ import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 
-contract PokemonFactory {
+contract PokemonFactory is Ownable {
+
+ constructor() Ownable(msg.sender) { 
+    
+ }
+
     //para generar eventos a nivel de web3
     event NewPokemon(uint pokemonId, string name, uint poder);
 
     uint8 poderDigits = 5;
     //Nos sirve para limitar el tamaño de la variable poder a 5 digitos
     uint32 poderModulus = uint32(10 ** poderDigits);
+    //Tiempode enfriamiento para las derrotas ()
+    uint tiempoRecu = 1 days;
 
     struct Pokemon {
         string name;
         string elemento;
+        uint readyTime;
+        uint8 level;
         //uint8 para obtimizar los costes de gas tenemos 256 maximo
         uint8 ataque;
         uint8 defensa;
@@ -24,8 +33,18 @@ contract PokemonFactory {
         uint8 velocidad;
     }
 
+    struct Entrenador {
+        string name;
+        uint cuentaVictorias;
+        uint cuentaDerrtas;
+        uint numPokemons;
+    }
+
     //Array de pokemons
     Pokemon[] public pokemons;
+
+    //Array de Entrenadores
+    Entrenador[] public entrenadores;
 
     //Para guardar el dueño de un pokemon, vamos a usar dos mapeos: el primero guardará el rastro de la dirección 
     //que posee ese pokemon y la otra guardará el rastro de cuantos pokemon posee cada propietario.
@@ -44,7 +63,7 @@ contract PokemonFactory {
         uint8 defensaEspecial = uint8((_poder/1000) % 10);
         uint8 velocidad= uint8((_poder/10**4) % 10);
         //Se aumenta el array de Pokemon
-        pokemons.push(Pokemon(_name, _elemento, ataque, defensa, ataqueEspecial, defensaEspecial, velocidad));
+        pokemons.push(Pokemon(_name, _elemento, 0, 0, ataque, defensa, ataqueEspecial, defensaEspecial, velocidad));
         //Se genera un id correspondiente al orden de creacion del pokemon
         uint id = pokemons.length - 1;
         //se asocia el id del pokemon con el usuario
@@ -52,6 +71,7 @@ contract PokemonFactory {
         //Aumentamos la cuenta de pokemons que posee el entrenador
         ownerPokemonCount[msg.sender]++;
         //Asociacion de la dirección del usuario con el nombre de entrenador que ha escogido
+
         trainerName[msg.sender]=_trainerName;
         //para generar eventos a nivel de web3
         emit NewPokemon(id, _name, _poder);

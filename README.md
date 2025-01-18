@@ -26,7 +26,7 @@ Para asociar los pokémon a las direcciones de usuario, emplearemos que intríns
 
 - Definir uso del token ERC1155
 - Especificar virtudes de desarrollar la aplicacion en la blockchain ethereum en cunato a privacidad y identidad digital.
-- Definir el flujo de la aplicación (intentar sacarle provecho a la blockchain)
+- Definir el flujo de la aplicación (intentar sacarle provecho a la blockchain): Batallas, niveles, capturas, etc..
 - Funciones:
   - Ataques del pokmon (atq. atq-esp. def y def-esp. ) que puede utilizar en el combate.
   - Combates aleatorios(Pokemons creados y destruidos)
@@ -36,6 +36,13 @@ Para asociar los pokémon a las direcciones de usuario, emplearemos que intríns
 
 ## Token ERC1155
 Es nuestra mejor opcion ya que auna las caracteristicas del token ERC20(token fungible) y ERC721(NFT) Entonces es conveniente xq se pueden mintear(acuñar) pokemons unicos, pero que se puden repetir, Ejemplo práctico:
-Existen Charizards y Squirtels pues estos son una especie unica pero en la que pude haber varios Charizards y Squirtels.
+Existen Charizards y Squirtels pues estos son una especie unica pero en la que pude haber varios Charizards y Squirtels.  
 
+## Batallas contra Entrenadores
+En cuanto a la lógica de las batallas, entre Pokémon, he pensado en implementar algo parecido a el juego de pistolero donde dos personas se enfrentan y en un momento sincronizados eligen una de las tres opciones siguientes; defenderse, cargar y disparar. Para disparar previamente has de haber cargado en algún turno anterior y si disparas y el otro no se protege le quitas vida. Para implementarlo con los stats que ya tengo de los Pokémon seria;
+- la accion de disparar va relacionada con el ataque o el ataque especial o ambas.
+- el caso de defenderse va relacionado tmb con la defensa especial, defensa normal o ambas.
+- la velocidad sirve para decidir quien ataca primero cuando los dos combatientes eligen atacar
+- el elemento añadira un daño extra a los ataques (normales/especiales) de fuego vs agua, se potencia agua, fuego vs tierra, se potencia fuego, tierra vs agua se potencai agua. En el resto de los casos donde se combaten entre pokemons del mismo elemento no se potencia ninguno.  
 
+Por utlimo, se tendria que añadir un timepo de enfriamiento en caso de derrota ha dicho pokemon, añadir una variable de vida para cada pokemon, idear un sistema de emparejamiento para las batallas. Variable estado para saber si esta en batalla y limite de tiempo para las batallas.

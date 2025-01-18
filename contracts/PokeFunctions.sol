@@ -20,4 +20,6 @@ contract PokeFunctions is PokeCouch {
       }
     return result;
   }
+
+  
 }
