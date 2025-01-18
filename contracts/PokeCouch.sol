@@ -81,5 +81,11 @@ contract PokeCouch is PokemonFactory {
         require(_pokemonId < pokemons.length, "ID de Pokemon invalido.");
         // Verificar que el Pokémon pertenece al usuario que llama
         require(pokemonToOwner[_pokemonId] == msg.sender, "No eres el propietario de este Pokemon.");
+
+        // Obtener el Pokémon del jugador
+        Pokemon storage pokemon = pokemons[_pokemonId];
+
+        // Aumentar estadísticas de forma aleatoria
+        uint rand = uint(keccak256(abi.encodePacked(block.timestamp, msg.sender, _pokemonId))) % 5;
     }
 }
