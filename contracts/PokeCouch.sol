@@ -75,4 +75,8 @@ contract PokeCouch is PokemonFactory {
         }
     }
   }
+
+    function trainPokemon(uint _pokemonId) public {
+
+    }
 }
