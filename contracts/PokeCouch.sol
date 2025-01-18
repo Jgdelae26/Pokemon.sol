@@ -23,7 +23,8 @@ contract PokeCouch is PokemonFactory {
     createEnemyPokemon();
     
     // Obtener el Pokémon enemigo
-    Pokemon storage pokemonEnemigo = pokemons[pokemons.length - 1];
+    uint idEnemigo = pokemons.length - 1;
+    Pokemon storage pokemonEnemigo = pokemons[idEnemigo];
 
     // Inicializamos puntos de salud (HP)
     uint hpJugador = pokemonJugador.hpPokemon;
@@ -39,7 +40,7 @@ contract PokeCouch is PokemonFactory {
             // Verificar si el enemigo ha sido derrotado
             if (hpEnemigo == 0) {
                 // El jugador ha ganado, eliminamos al Pokémon enemigo
-                _removePokemon(enemigoId);
+                _removePokemon(idEnemigo);
                 return;
             }
 
@@ -68,7 +69,7 @@ contract PokeCouch is PokemonFactory {
             // Verificar si el enemigo ha sido derrotado
             if (hpEnemigo == 0) {
                 // El jugador ha ganado, eliminamos al Pokémon enemigo
-                _removePokemon(enemigoId);
+                _removePokemon(idEnemigo);
                 return;
             }
         }

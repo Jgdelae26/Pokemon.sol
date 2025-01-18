@@ -122,4 +122,7 @@ contract PokemonFactory {
         emit NewPokemon(id, species[specieIndex], poderEnemigo);
         
     }
+    function _removePokemon(uint _id) public {
+
+    }
 }
