@@ -25,6 +25,53 @@ contract PokeCouch is PokemonFactory {
     // Obtener el Pokémon enemigo
     Pokemon storage pokemonEnemigo = pokemons[pokemons.length - 1];
 
-    
+    // Inicializamos puntos de salud (HP)
+    uint hpJugador = pokemonJugador.hpPokemon;
+    uint hpEnemigo = pokemonEnemigo.hpPokemon;
+
+    // Simular el combate
+    while (hpJugador > 0 && hpEnemigo > 0) {
+        // Turno del jugador
+        if (pokemonJugador.velocidad >= pokemonEnemigo.velocidad) {
+            uint damageJugador = (pokemonJugador.ataque + pokemonJugador.ataqueEspecial) / 2;
+            hpEnemigo = hpEnemigo > damageJugador ? hpEnemigo - damageJugador : 0;
+
+            // Verificar si el enemigo ha sido derrotado
+            if (hpEnemigo == 0) {
+                // El jugador ha ganado, eliminamos al Pokémon enemigo
+                _removePokemon(enemigoId);
+                return;
+            }
+
+            // Turno del enemigo
+            uint damageEnemigo = (pokemonEnemigo.ataque + pokemonEnemigo.ataqueEspecial) / 2;
+            hpJugador = hpJugador > damageEnemigo ? hpJugador - damageEnemigo : 0;
+
+            // Verificar si el jugador ha sido derrotado
+            if (hpJugador == 0) {
+                return;
+            }
+        } else {
+            // Turno del enemigo primero
+            uint damageEnemigo = (pokemonEnemigo.ataque + pokemonEnemigo.ataqueEspecial) / 2;
+            hpJugador = hpJugador > damageEnemigo ? hpJugador - damageEnemigo : 0;
+
+            // Verificar si el jugador ha sido derrotado
+            if (hpJugador == 0) {
+                return;
+            }
+
+            // Turno del jugador
+            uint damageJugador = (pokemonJugador.ataque + pokemonJugador.ataqueEspecial) / 2;
+            hpEnemigo = hpEnemigo > damageJugador ? hpEnemigo - damageJugador : 0;
+
+            // Verificar si el enemigo ha sido derrotado
+            if (hpEnemigo == 0) {
+                // El jugador ha ganado, eliminamos al Pokémon enemigo
+                _removePokemon(enemigoId);
+                return;
+            }
+        }
+    }
   }
 }
