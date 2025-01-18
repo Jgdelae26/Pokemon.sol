@@ -98,6 +98,10 @@ contract PokeCouch is PokemonFactory {
     }
 
     function capturePokemon(uint _enemyId) public {
-            
+        // Verificar que el ID del Pokémon sea válido
+        require(_enemyId < pokemons.length, "ID de Pokemon invalido.");
+        // Verificar que el Pokémon enemigo no pertenece a ningún jugador
+        require(pokemonToOwner[_enemyId] == address(0), "Este Pokemon ya pertenece a un entrenador.");
+        
     }
 }
