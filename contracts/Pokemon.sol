@@ -16,6 +16,7 @@ contract PokemonFactory {
     struct Pokemon {
         string name;
         string elemento;
+        uint hpJugador;
         uint ataque;
         uint defensa;
         uint ataqueEspecial;
@@ -42,8 +43,9 @@ contract PokemonFactory {
         uint ataqueEspecial = (_poder/100) % 10;
         uint defensaEspecial = (_poder/1000) % 10;
         uint velocidad= (_poder/10**4) % 10;
+        uint hpPokemon = 50 + defensa * 2;
         //Se aumenta el array de Pokemon
-        pokemons.push(Pokemon(_name, _elemento, ataque, defensa, ataqueEspecial, defensaEspecial, velocidad));
+        pokemons.push(Pokemon(_name, _elemento, hpPokemon, ataque, defensa, ataqueEspecial, defensaEspecial, velocidad));
         //Se genera un id correspondiente al orden de creacion del pokemon
         uint id = pokemons.length - 1;
         //se asocia el id del pokemon con el usuario
@@ -104,12 +106,13 @@ contract PokemonFactory {
         uint velocidadEnemigo = (poderEnemigo / 100) % 10;
         uint ataqueEspecialEnemigo = (poderEnemigo/100) % 10;
         uint defensaEspecialEnemigo = (poderEnemigo/1000) % 10;
+        uint hpEnemigo = 50 + defensaEnemigo * 2;
         
         // Elegimos una especie y su elemento de forma pseudoaleatoria
         uint specieIndex = poderEnemigo % species.length;
 
         //Se aumenta el array de Pokemon
-        pokemons.push(Pokemon(species[specieIndex], element[specieIndex], ataqueEnemigo, defensaEnemigo, ataqueEspecialEnemigo, 
+        pokemons.push(Pokemon(species[specieIndex], element[specieIndex], hpEnemigo, ataqueEnemigo, defensaEnemigo, ataqueEspecialEnemigo, 
         defensaEspecialEnemigo, velocidadEnemigo));
         
     }
