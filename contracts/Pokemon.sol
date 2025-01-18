@@ -16,7 +16,7 @@ contract PokemonFactory {
     struct Pokemon {
         string name;
         string elemento;
-        uint hpJugador;
+        uint hpPokemon;
         uint ataque;
         uint defensa;
         uint ataqueEspecial;
