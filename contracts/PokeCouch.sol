@@ -87,5 +87,13 @@ contract PokeCouch is PokemonFactory {
 
         // Aumentar estadísticas de forma aleatoria
         uint rand = uint(keccak256(abi.encodePacked(block.timestamp, msg.sender, _pokemonId))) % 5;
+
+        //Aumento estadísticas
+        pokemon.ataque += rand;
+        pokemon.defensa += rand;
+        pokemon.velocidad += rand;
+        pokemon.ataque += rand;
+        pokemon.defensa += rand;
+        pokemon.hpPokemon += rand;
     }
 }
