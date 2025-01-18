@@ -102,6 +102,9 @@ contract PokeCouch is PokemonFactory {
         require(_enemyId < pokemons.length, "ID de Pokemon invalido.");
         // Verificar que el Pokémon enemigo no pertenece a ningún jugador
         require(pokemonToOwner[_enemyId] == address(0), "Este Pokemon ya pertenece a un entrenador.");
-        
+
+        // Asignar el Pokémon al jugador que lo captura
+        pokemonToOwner[_enemyId] = msg.sender;
+        ownerPokemonCount[msg.sender]++;
     }
 }
