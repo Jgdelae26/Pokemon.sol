@@ -90,13 +90,13 @@ contract PokemonFactory {
     }
     
     //Funcion para crear pokemons salvajes(_trainerName se usa para generar valores aleatorios con el nombre del entrenador)
-    function createEnemyPokemon(string calldata _trainerName) public {
+    function createEnemyPokemon() public {
         // Definimos los nombres de las especies y sus elementos
         string[3] memory species = ["Ignis","Aqualis","Terranox"];
         string[3] memory element = ["Fuego","Agua","Tierra"];
 
-        //Poder aleatorio
-        uint poderEnemigo = _randomPoder(_trainerName);
+        //Poder aleatorio (Hay que crear valores aleatorios)
+        uint poderEnemigo = 1;
         
         //Estadisticas pokemon
         uint ataqueEnemigo = poderEnemigo % 10;

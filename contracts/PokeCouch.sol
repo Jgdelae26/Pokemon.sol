@@ -19,6 +19,8 @@ contract PokeCouch is PokemonFactory {
     // Obtener el Pokémon del jugador
     Pokemon storage pokemonJugador = pokemons[_pokemonId];
 
+    // Crear el Pokémon enemigo
+    createEnemyPokemon();
     
   }
 }
