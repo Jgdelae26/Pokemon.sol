@@ -124,6 +124,15 @@ contract PokemonFactory {
     }
     function _removePokemon(uint _id) public {
         require(_id >= 0 && _id < pokemons.length, "ID de Pokemon invalido.");
+        
+        if (_id != pokemons.length - 1) {
+            // Reemplazar el Pokémon a eliminar con el último del array
+            pokemons[_id] = pokemons[pokemons.length - 1];
+
+            // Actualizar el mapeo de pokemonToOwner para el ID que fue movido
+            pokemonToOwner[_id] = pokemonToOwner[pokemons.length - 1];//ID del Pokémon ahora apunte al mismo propietario que el último Pokémon del array
+            pokemonToOwner[pokemons.length - 1] = address(0); // Limpieza del último índice
+        }
 
         // Eliminar el último Pokémon
         pokemons.pop();
