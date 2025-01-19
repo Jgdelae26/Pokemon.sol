@@ -23,12 +23,14 @@ contract PokemonFactory is Ownable{
     struct Pokemon {
         string name;
         string elemento;
-        uint hpPokemon;
-        uint ataque;
-        uint defensa;
-        uint ataqueEspecial;
-        uint defensaEspecial;
-        uint velocidad;
+        uint readyTime;
+        uint8 level;
+        //uint8 para obtimizar los costes de gas tenemos 256 maximo
+        uint8 ataque;
+        uint8 defensa;
+        uint8 ataqueEspecial;
+        uint8 defensaEspecial;
+        uint8 velocidad;
     }
 
     struct Entrenador {
