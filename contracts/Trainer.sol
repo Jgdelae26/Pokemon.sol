@@ -11,5 +11,11 @@ contract Trainer is PokemonFactory{
 
         // Crear un nuevo entrenador y añadirlo al array
         entrenadores.push(Entrenador(_trainerName, 0, 0, 0));
+
+        // Obtener el índice del nuevo entrenador en el array
+        uint index = entrenadores.length - 1;
+
+        //Asociacion de la dirección del usuario con el nombre de entrenador que ha escogido
+        trainerName[msg.sender] = _trainerName;
     }
 }
