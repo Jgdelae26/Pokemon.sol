@@ -71,7 +71,7 @@ contract Trainer is PokemonFactory{
         return rankingEntrenadores; // Devolvemos el array ordenado
     }
 
-    // Función recursiva de QuickSort para ordenar el array
+    // Función recursiva de QuickSort para ordenar el array(Añadir al contrato de funciones)
     function quickSort(Entrenador[] memory arr, int left, int right) internal pure {
         // Condición base de la recursión: Si el rango de índices es válido (left < right)
         if (left >= right) return;
@@ -102,4 +102,6 @@ contract Trainer is PokemonFactory{
             }
         }
     }
+
+
 }
