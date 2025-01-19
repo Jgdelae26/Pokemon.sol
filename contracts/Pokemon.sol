@@ -123,6 +123,7 @@ contract PokemonFactory {
         emit NewPokemon(id, species[specieIndex], poderEnemigo);
         
     }
+    //Deprecated
     /*function _removePokemon(uint _id) private {
         // Verificar que el ID del Pokémon sea válido
         require(_id >= 0 && _id < pokemons.length, "ID de Pokemon invalido.");
