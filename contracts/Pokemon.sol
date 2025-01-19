@@ -70,9 +70,6 @@ contract PokemonFactory is Ownable {
         pokemonToOwner[id]=msg.sender;
         //Aumentamos la cuenta de pokemons que posee el entrenador
         ownerPokemonCount[msg.sender]++;
-        //Asociacion de la dirección del usuario con el nombre de entrenador que ha escogido
-
-        trainerName[msg.sender]=_trainerName;
         //para generar eventos a nivel de web3
         emit NewPokemon(id, _name, _poder);
     }
