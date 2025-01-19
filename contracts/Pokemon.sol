@@ -36,7 +36,7 @@ contract PokemonFactory is Ownable {
     struct Entrenador {
         string name;
         uint cuentaVictorias;
-        uint cuentaDerrtas;
+        uint cuentaDerrotas;
         uint numPokemons;
     }
 

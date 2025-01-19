@@ -45,7 +45,14 @@ contract Trainer is PokemonFactory{
 
     // Función para actualizar las estadísticas de los entrenadores
     function actualizarVictorias(address _entrenador, bool victoria) external registrado() onlyOwner {
-
+        //Recuperar el índice del entrenador
+        uint index = addressToEntrenadorIndex[_entrenador];
+        
+        if (victoria) {
+            entrenadores[index].cuentaVictorias++;
+        } else {
+            entrenadores[index].cuentaDerrotas++;
+        }
     }
     
 }
