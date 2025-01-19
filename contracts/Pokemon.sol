@@ -64,6 +64,7 @@ contract PokemonFactory {
         uint rand = uint(keccak256(abi.encodePacked(_str)));
         return rand % poderModulus;
     }
+
     //funcion para procesar el elemento y devolver el poquemon correspondiente
     function processElement(string memory _element) public pure returns (string memory) {
         bytes32 elementHash = keccak256(abi.encodePacked(_element));
@@ -122,7 +123,7 @@ contract PokemonFactory {
         emit NewPokemon(id, species[specieIndex], poderEnemigo);
         
     }
-    function _removePokemon(uint _id) public {
+    /*function _removePokemon(uint _id) private {
         // Verificar que el ID del Pokémon sea válido
         require(_id >= 0 && _id < pokemons.length, "ID de Pokemon invalido.");
         
@@ -137,5 +138,5 @@ contract PokemonFactory {
 
         // Eliminar el último Pokémon
         pokemons.pop();
-    }
+    }*/
 }
