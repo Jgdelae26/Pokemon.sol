@@ -59,4 +59,36 @@ contract Trainer is PokemonFactory{
     function obtenerRanking() public view returns (Entrenador[] memory) {
 
     }
+
+    // Función recursiva de QuickSort para ordenar el array
+    function quickSort(Entrenador[] memory arr, int left, int right) internal pure {
+        // Condición base de la recursión: Si el rango de índices es válido (left < right)
+        if (left >= right) return;
+
+        // Seleccionamos el pivote: en este caso, el elemento en la posición central
+        int pivot = left + (right - left) / 2;
+        int i = left;  // Apuntador al inicio del array
+        int j = right; // Apuntador al final del array
+
+        Entrenador memory pivotValue = arr[uint(pivot)]; // Guardamos el valor del pivote (el entrenador en esa posición)
+
+        // Comenzamos a recorrer el array desde ambos extremos (i y j) hasta encontrar elementos fuera de lugar
+        while (i <= j) {
+            // Mover el apuntador i hacia la derecha hasta encontrar un valor mayor que el pivote
+            while (arr[uint(i)].cuentaVictorias > pivotValue.cuentaVictorias) i++;
+
+            // Mover el apuntador j hacia la izquierda hasta encontrar un valor menor que el pivote
+            while (arr[uint(j)].cuentaVictorias < pivotValue.cuentaVictorias) j--;
+
+            // Si i y j no se han cruzado, intercambiamos los elementos en las posiciones i y j
+            if (i <= j) {
+                // Intercambiar los elementos de los índices i y j
+                (arr[uint(i)], arr[uint(j)]) = (arr[uint(j)], arr[uint(i)]);
+
+                // Mover los apuntadores para continuar el proceso
+                i++;
+                j--;
+            }
+        }
+    }
 }
