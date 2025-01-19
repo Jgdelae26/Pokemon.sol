@@ -26,6 +26,7 @@ contract Trainer is PokemonFactory{
         // Recuperar el índice del entrenador
         uint index = addressToEntrenadorIndex[_entrenador];
 
-        
+        // Devolver el entrenador del array
+        return entrenadores[index];
     }
 }
