@@ -22,5 +22,10 @@ contract Trainer is PokemonFactory{
     function consultarEntrenador(address _entrenador) public view returns (Entrenador memory) {
         // Verificar si el entrenador no está registrado
         require(bytes(trainerName[msg.sender]).length > 0, "El entrenador no esta registrado");
+        
+        // Recuperar el índice del entrenador
+        uint index = addressToEntrenadorIndex[_entrenador];
+
+        
     }
 }
