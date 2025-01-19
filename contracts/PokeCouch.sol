@@ -11,6 +11,7 @@ contract PokeCouch is PokemonFactory {
         _;
     }
 
+    //Funcion para simular batallas pokemon con bots(Cambiar el pokemon enemigo y capturar)
   function battle(uint _pokemonId) public propietario(_pokemonId) {
 
     // Obtener el Pokémon del jugador
