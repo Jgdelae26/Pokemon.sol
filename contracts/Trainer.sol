@@ -57,7 +57,9 @@ contract Trainer is PokemonFactory{
     
     //Consultar el ranking de entrenadores
     function obtenerRanking() public view returns (Entrenador[] memory) {
-
+        Entrenador[] memory rankingEntrenadores = entrenadores; // Creamos una copia del array de entrenadores
+        quickSort(rankingEntrenadores, int(0), int(rankingEntrenadores.length - 1)); // Llamamos a QuickSort para ordenar el array
+        return rankingEntrenadores; // Devolvemos el array ordenado
     }
 
     // Función recursiva de QuickSort para ordenar el array
