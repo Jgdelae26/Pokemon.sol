@@ -17,7 +17,9 @@ contract Trainer is PokemonFactory{
 
         //Asociacion de la dirección del usuario con el nombre de entrenador que ha escogido
         trainerName[msg.sender] = _trainerName;
+        addressToEntrenadorIndex[msg.sender] = index;
     }
+    
     // Función para consultar los datos de un entrenador
     function consultarEntrenador(address _entrenador) public view returns (Entrenador memory) {
         // Verificar si el entrenador no está registrado
