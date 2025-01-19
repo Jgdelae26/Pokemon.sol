@@ -5,6 +5,12 @@ import "./Pokemon.sol";
 
 contract Trainer is PokemonFactory{
 
+    //Comprobar que el entrenador está registrado
+    modifier registrado(){
+        require(bytes(trainerName[msg.sender]).length > 0, "El entrenador no esta registrado");
+        _;
+    }
+
     // Evento para registrar al entrenador
     event EntrenadorRegistrado(address indexed entrenadorAddress, string name);
 
@@ -38,4 +44,6 @@ contract Trainer is PokemonFactory{
         // Devolver el entrenador del array
         return entrenadores[index];
     }
+
+    
 }
