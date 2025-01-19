@@ -5,18 +5,18 @@ import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 
-contract PokemonFactory is Ownable{
-    
+contract PokemonFactory is Ownable {
+
     constructor() Ownable(msg.sender) { 
     
     }
-    
+
     //para generar eventos a nivel de web3
     event NewPokemon(uint pokemonId, string name, uint poder);
 
-    uint poderDigits = 5;
-    //Nos sirve para limitar el tamaño de la variable poder a 16 digitos
-    uint poderModulus = 10 ** poderDigits;
+    uint8 poderDigits = 5;
+    //Nos sirve para limitar el tamaño de la variable poder a 5 digitos
+    uint32 poderModulus = uint32(10 ** poderDigits);
     //Tiempode enfriamiento para las derrotas ()
     uint tiempoRecu = 1 days;
 
@@ -39,12 +39,12 @@ contract PokemonFactory is Ownable{
         uint cuentaDerrtas;
         uint numPokemons;
     }
-    
-    //Array de Entrenadores
-    Entrenador[] public entrenadores;
 
     //Array de pokemons
     Pokemon[] public pokemons;
+
+    //Array de Entrenadores
+    Entrenador[] public entrenadores;
 
     //Para guardar el dueño de un pokemon, vamos a usar dos mapeos: el primero guardará el rastro de la dirección 
     //que posee ese pokemon y la otra guardará el rastro de cuantos pokemon posee cada propietario.
@@ -54,17 +54,16 @@ contract PokemonFactory is Ownable{
     //Mapping para guardar el nombre del entrenador
     mapping (address => string) public trainerName;
 
-    //Funcion principal para crear pokemons arraigados a un entrenador
-    function _createPokemon(string memory _name, string memory _elemento, uint  _poder, string calldata _trainerName) private {
+    //Funcion principal para crear pokemons arraigados a un entrenador. Internal porque nos interesa que contratos que hereden de este puedan emplearla.
+    function _createPokemon(string memory _name, string memory _elemento, uint16  _poder, string calldata _trainerName) internal {
         //Tratamiento de los stats en funcion de la var aleatoria poder
-        uint ataque = _poder % 10;
-        uint defensa = (_poder/10) % 10;
-        uint ataqueEspecial = (_poder/100) % 10;
-        uint defensaEspecial = (_poder/1000) % 10;
-        uint velocidad= (_poder/10**4) % 10;
-        uint hpPokemon = 50 + defensa * 2;
+        uint8 ataque = uint8(_poder % 10);
+        uint8 defensa = uint8((_poder/10) % 10);
+        uint8 ataqueEspecial = uint8((_poder/100) % 10);
+        uint8 defensaEspecial = uint8((_poder/1000) % 10);
+        uint8 velocidad= uint8((_poder/10**4) % 10);
         //Se aumenta el array de Pokemon
-        pokemons.push(Pokemon(_name, _elemento, hpPokemon, ataque, defensa, ataqueEspecial, defensaEspecial, velocidad));
+        pokemons.push(Pokemon(_name, _elemento, 0, 0, ataque, defensa, ataqueEspecial, defensaEspecial, velocidad));
         //Se genera un id correspondiente al orden de creacion del pokemon
         uint id = pokemons.length - 1;
         //se asocia el id del pokemon con el usuario
@@ -72,6 +71,7 @@ contract PokemonFactory is Ownable{
         //Aumentamos la cuenta de pokemons que posee el entrenador
         ownerPokemonCount[msg.sender]++;
         //Asociacion de la dirección del usuario con el nombre de entrenador que ha escogido
+
         trainerName[msg.sender]=_trainerName;
         //para generar eventos a nivel de web3
         emit NewPokemon(id, _name, _poder);
@@ -79,12 +79,12 @@ contract PokemonFactory is Ownable{
 
     //keccak256 es una version de SHA3 que es una funcion Hash que retorna 256-bits en un formato de numero hexadecimal 
     //que empleamos como pseudo aleatorio, DEBERIAMOS ENCONTRAR UNA MANERA MEJOR 
-    function _randomPoder(string calldata _str) private view returns(uint) {
+    function _randomPoder(string calldata _str) private view returns(uint16) {
         uint rand = uint(keccak256(abi.encodePacked(_str)));
-        return rand % poderModulus;
+        return uint16(rand % poderModulus);
     }
-
-    //funcion para procesar el elemento y devolver el poquemon correspondiente
+    //funcion para procesar el elemento y devolver el poquemon correspondiente el hecho de que sea pure ayuda a optimizar 
+    //el consumo de gas e implica que la funcion no reliaza consultas o modificaciones en la blockchain
     function processElement(string memory _element) public pure returns (string memory) {
         bytes32 elementHash = keccak256(abi.encodePacked(_element));
 
@@ -104,7 +104,7 @@ contract PokemonFactory is Ownable{
         //Cada entrenador solo puede tener un unico inicial
         require(ownerPokemonCount[msg.sender] == 0);
         //se optiene el valor aleatorio de poder
-        uint randPoder = _randomPoder(_trainerName);
+        uint16 randPoder = _randomPoder(_trainerName);
         //se procesa el elemento
         string memory name = processElement(_elemento);
         //se genera el pokemon
