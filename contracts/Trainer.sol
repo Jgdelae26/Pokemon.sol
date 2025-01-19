@@ -43,5 +43,9 @@ contract Trainer is PokemonFactory{
         return entrenadores[index];
     }
 
+    // Función para actualizar las estadísticas de los entrenadores
+    function actualizarVictorias(address _entrenador, bool victoria) external registrado() onlyOwner {
+
+    }
     
 }
