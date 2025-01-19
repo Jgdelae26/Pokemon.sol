@@ -34,8 +34,12 @@ contract Trainer is PokemonFactory{
     }
     
     //Función para cambiar nombre de entrenador
-    function cambiarNombre(string memory _nuevoNombre) public {
-
+    function cambiarNombre(string memory _nuevoNombre) public registrado(){
+        // Recuperar el índice del entrenador
+        uint index = addressToEntrenadorIndex[msg.sender];
+        // Actualizar los mappings de entrenadores
+        entrenadores[index].name = _nuevoNombre;
+        trainerName[msg.sender] = _nuevoNombre;
     }
 
     // Función para consultar los datos de un entrenador
