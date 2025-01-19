@@ -5,7 +5,12 @@ import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 
-contract PokemonFactory {
+contract PokemonFactory is Ownable{
+    
+    constructor() Ownable(msg.sender) { 
+    
+    }
+    
     //para generar eventos a nivel de web3
     event NewPokemon(uint pokemonId, string name, uint poder);
 
