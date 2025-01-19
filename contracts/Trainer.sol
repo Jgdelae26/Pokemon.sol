@@ -33,6 +33,11 @@ contract Trainer is PokemonFactory{
         emit EntrenadorRegistrado(msg.sender, _trainerName);
     }
     
+    //Función para cambiar nombre de entrenador
+    function cambiarNombre(string memory _nuevoNombre) public {
+
+    }
+
     // Función para consultar los datos de un entrenador
     function consultarEntrenador(address _entrenador) public view registrado() returns (Entrenador memory){
         
