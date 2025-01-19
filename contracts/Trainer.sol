@@ -55,4 +55,8 @@ contract Trainer is PokemonFactory{
         }
     }
     
+    //Consultar el ranking de entrenadores
+    function obtenerRanking() public view returns (Entrenador[] memory) {
+
+    }
 }
