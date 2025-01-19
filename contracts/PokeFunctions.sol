@@ -77,8 +77,8 @@ contract PokeFunctions is PokeCouch {
             _myPokemon.ataqueEspecial = _myPokemon.ataqueEspecial + _cantidadSubida;
         } else if (indexStat == 4) {
           _myPokemon.defensaEspecial = _myPokemon.defensaEspecial + _cantidadSubida;
-        } else {
-          _myPokemon.defensaEspecial = _myPokemon.defensaEspecial + _cantidadSubida;
+        } else if (indexStat == 5) {
+          _myPokemon.velocidad = _myPokemon.velocidad + _cantidadSubida;
         }
     }
 }

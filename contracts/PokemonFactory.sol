@@ -7,9 +7,9 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract PokemonFactory is Ownable {
 
- constructor() Ownable(msg.sender) { 
+    constructor() Ownable(msg.sender) { 
     
- }
+    }
 
     //para generar eventos a nivel de web3
     event NewPokemon(uint pokemonId, string name, uint poder);
