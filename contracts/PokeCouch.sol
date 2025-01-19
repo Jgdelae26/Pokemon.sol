@@ -11,8 +11,6 @@ contract PokeCouch is PokemonFactory {
   //}
 
   function battle(uint _pokemonId) public {
-    // Verificar que el ID del Pokémon sea válido
-    require(_pokemonId < pokemons.length, "ID de Pokemon invalido.");
     // Verificar que el Pokémon pertenece al usuario que llama
     require(pokemonToOwner[_pokemonId] == msg.sender, "No eres el propietario de este Pokemon.");
 
