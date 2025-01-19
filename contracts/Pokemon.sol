@@ -17,6 +17,8 @@ contract PokemonFactory is Ownable{
     uint poderDigits = 5;
     //Nos sirve para limitar el tamaño de la variable poder a 16 digitos
     uint poderModulus = 10 ** poderDigits;
+    //Tiempode enfriamiento para las derrotas ()
+    uint tiempoRecu = 1 days;
 
     struct Pokemon {
         string name;
@@ -28,6 +30,16 @@ contract PokemonFactory is Ownable{
         uint defensaEspecial;
         uint velocidad;
     }
+
+    struct Entrenador {
+        string name;
+        uint cuentaVictorias;
+        uint cuentaDerrtas;
+        uint numPokemons;
+    }
+    
+    //Array de Entrenadores
+    Entrenador[] public entrenadores;
 
     //Array de pokemons
     Pokemon[] public pokemons;
