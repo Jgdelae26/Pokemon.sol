@@ -13,6 +13,8 @@ contract Trainer is PokemonFactory{
 
     // Evento para registrar al entrenador
     event EntrenadorRegistrado(address indexed entrenadorAddress, string name);
+    // Evento para registrar cambio de nombre
+    event CambioDeNombre(address indexed entrenadorAddress, string name);
 
     // Función para registrar un entrenador
     function registrarEntrenador(address _entrenador, string calldata _trainerName) external{
