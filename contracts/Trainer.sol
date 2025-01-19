@@ -4,6 +4,10 @@ pragma solidity ^0.8.20;
 import "./Pokemon.sol";
 
 contract Trainer is PokemonFactory{
+
+    // Evento para registrar al entrenador
+    event EntrenadorRegistrado(address indexed entrenadorAddress, string name);
+
     // Función para registrar un entrenador
     function registrarEntrenador(address _entrenador, string calldata _trainerName) external onlyOwner {
         // Verificar si el entrenador ya está registrado
