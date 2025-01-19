@@ -5,14 +5,13 @@ import "./Pokemon.sol";
 
 contract PokeCouch is PokemonFactory {
   
+    //Comprueba que el usuario sea el dueño del pokemon
+    modifier propietario(uint _pokemonId){
+        require(pokemonToOwner[_pokemonId] == msg.sender, "No eres el propietario de este Pokemon.");
+        _;
+    }
 
-  //function feed(uint pokeId)   public {
-  //  require(msg.sender == pokemonToOwner[pokeId]);
-  //}
-
-  function battle(uint _pokemonId) public {
-    // Verificar que el Pokémon pertenece al usuario que llama
-    require(pokemonToOwner[_pokemonId] == msg.sender, "No eres el propietario de este Pokemon.");
+  function battle(uint _pokemonId) public propietario(_pokemonId) {
 
     // Obtener el Pokémon del jugador
     Pokemon storage pokemonJugador = pokemons[_pokemonId];
@@ -74,11 +73,7 @@ contract PokeCouch is PokemonFactory {
     }
   }
 
-    function trainPokemon(uint _pokemonId) public {
-        // Verificar que el ID del Pokémon sea válido
-        require(_pokemonId < pokemons.length, "ID de Pokemon invalido.");
-        // Verificar que el Pokémon pertenece al usuario que llama
-        require(pokemonToOwner[_pokemonId] == msg.sender, "No eres el propietario de este Pokemon.");
+    function trainPokemon(uint _pokemonId) public propietario(_pokemonId) {
 
         // Obtener el Pokémon del jugador
         Pokemon storage pokemon = pokemons[_pokemonId];
