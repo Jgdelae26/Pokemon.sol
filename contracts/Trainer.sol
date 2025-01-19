@@ -42,6 +42,8 @@ contract Trainer is PokemonFactory{
         // Actualizar los mappings de entrenadores
         entrenadores[index].name = _nuevoNombre;
         trainerName[msg.sender] = _nuevoNombre;
+        // Emitir evento
+        emit CambioDeNombre(msg.sender, _nuevoNombre);
     }
 
     // Función para consultar los datos de un entrenador
