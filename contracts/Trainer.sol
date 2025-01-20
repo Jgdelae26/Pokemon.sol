@@ -107,5 +107,8 @@ contract Trainer is PokemonFactory{
         }
     }
 
+    function eliminarEntrenador(address _entrenador) external onlyOwner registrado {
+        
+    }
 
 }
