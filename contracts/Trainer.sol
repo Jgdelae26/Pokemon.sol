@@ -15,6 +15,8 @@ contract Trainer is PokemonFactory{
     event EntrenadorRegistrado(address indexed entrenadorAddress, string name);
     // Evento para registrar cambio de nombre
     event CambioDeNombre(address indexed entrenadorAddress, string name);
+    // Evento para notificar la eliminación del entrenador
+    event EntrenadorEliminado(address entrenadorAddress);   
 
     // Función para registrar un entrenador
     function registrarEntrenador(address _entrenador, string calldata _trainerName) external{
@@ -140,6 +142,9 @@ contract Trainer is PokemonFactory{
         // Eliminar datos del mapeo
         delete trainerName[_entrenador];
         delete addressToEntrenadorIndex[_entrenador];
+
+        // Emitir evento
+        emit EntrenadorEliminado(_entrenador);
     }
 
     // Función para compactar el array de Pokémon después de eliminaciones
