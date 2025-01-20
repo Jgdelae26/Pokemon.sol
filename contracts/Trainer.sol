@@ -125,6 +125,11 @@ contract Trainer is PokemonFactory{
         }
         // Ajustar el array de Pokémon para compactar
         compactarArrayPokemons();
+
+        // Eliminar datos del entrenador
+        delete entrenadores[index]; // Remover del array de entrenadores
+        delete trainerName[_entrenador]; // Remover el nombre del entrenador
+        delete addressToEntrenadorIndex[_entrenador]; // Remover el índice asociado
     }
 
     // Función para compactar el array de Pokémon después de eliminaciones
