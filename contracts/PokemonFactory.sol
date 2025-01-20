@@ -79,10 +79,10 @@ contract PokemonFactory is Ownable, PokeOwnership {
         pero como estos se pueden repetir hay multiplicidad con diferentes caracteristicas entre ellos.
         Además se añaden 100 pokecoins a la direccion.
         */
-        uint256[] memory ids = new uint256[](3);
+        uint256[] memory ids = new uint256[](2);
         ids[0] = 1;
         ids[1] = _idEspecie;
-        uint256[] memory amounts = new uint256[](3);
+        uint256[] memory amounts = new uint256[](2);
         amounts[0] = 100; 
         amounts[1] = 1;
         pokemint(msg.sender, ids, amounts);
@@ -96,15 +96,15 @@ contract PokemonFactory is Ownable, PokeOwnership {
     }
     //funcion para procesar el elemento y devolver el poquemon correspondiente el hecho de que sea pure ayuda a optimizar 
     //el consumo de gas e implica que la funcion no reliaza consultas o modificaciones en la blockchain
-    function processElement(string memory _element) public pure returns (string memory, uint8 ) {
+    function processElement(string memory _element) private pure returns (string memory, uint8 ) {
         bytes32 elementHash = keccak256(abi.encodePacked(_element));
 
         if (elementHash == keccak256(abi.encodePacked("Agua"))) {
-            return ("Aqualis", 1);
+            return ("Aqualis", 2);
         } else if (elementHash == keccak256(abi.encodePacked("Fuego"))) {
-            return ("Ignis", 2);
+            return ("Ignis", 3);
         } else if (elementHash == keccak256(abi.encodePacked("Tierra"))) {
-            return ("Terranox", 3);
+            return ("Terranox", 4);
         } else {
             revert("Elemento no valido. Solo se aceptan 'Agua', 'Fuego' o 'Tierra'.");
         }
