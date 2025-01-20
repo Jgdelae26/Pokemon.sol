@@ -125,4 +125,9 @@ contract Trainer is PokemonFactory{
         }
     }
 
+    // Función para compactar el array de Pokémon después de eliminaciones
+    function compactarArrayPokemons() internal {
+        
+    }
+
 }
