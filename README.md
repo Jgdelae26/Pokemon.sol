@@ -19,3 +19,31 @@ Para asociar los pokémon a las direcciones de usuario, emplearemos que intríns
   ·Combates aleatorios(Pokemons creados y destruidos)
   ·Entrenar pokemons
   ·Capturar pokemons
+
+  ## Trainer.sol
+  
+Este contrato extiende las funcionalidades de PokemonFactory y gestiona a los entrenadores, incluyendo registro, actualización de estadísticas y consulta de ranking.
+
+·Características principales:
+Registro de Entrenadores:
+
+-Función registrarEntrenador: Permite a los usuarios registrarse como entrenadores asignándoles un nombre único.
+Emite el evento EntrenadorRegistrado para notificar el registro.
+Gestión del Nombre de Entrenador:
+
+-Función cambiarNombre: Permite a un entrenador registrado cambiar su nombre.
+Emite el evento CambioDeNombre al realizar el cambio.
+Consulta de Datos:
+
+-Función consultarEntrenador: Retorna la información del entrenador, como victorias, derrotas y nombre, utilizando su dirección.
+Actualización de Estadísticas:
+
+-Función actualizarVictorias: Permite al administrador (onlyOwner) actualizar las victorias o derrotas de un entrenador.
+Ranking de Entrenadores:
+
+-Función obtenerRanking: Devuelve una lista de entrenadores ordenados por número de victorias usando el algoritmo QuickSort.
+·Funciones Auxiliares:
+-QuickSort: Algoritmo recursivo para ordenar el ranking de entrenadores según sus victorias.
+·Seguridad:
+-Modificador registrado: Verifica que el entrenador esté registrado antes de realizar ciertas acciones.
+-Modificador onlyOwner: Restringe funciones administrativas al propietario del contrato.
