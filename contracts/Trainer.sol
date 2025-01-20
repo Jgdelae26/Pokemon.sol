@@ -123,6 +123,8 @@ contract Trainer is PokemonFactory{
                 delete pokemons[i];
             }
         }
+        // Ajustar el array de Pokémon para compactar
+        compactarArrayPokemons();
     }
 
     // Función para compactar el array de Pokémon después de eliminaciones
