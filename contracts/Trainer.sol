@@ -127,7 +127,22 @@ contract Trainer is PokemonFactory{
 
     // Función para compactar el array de Pokémon después de eliminaciones
     function compactarArrayPokemons() internal {
-        
+        uint originalLength = pokemons.length; // Longitud original del array
+        uint newIndex = 0; // Índice para escribir en el array compacto
+
+        for (uint i = 0; i < originalLength; i++) {
+            // Si el Pokémon no ha sido eliminado (nombre no vacío)
+            if (bytes(pokemons[i].name).length > 0) {
+                // Sobrescribir la posición actual con el Pokémon válido
+                pokemons[newIndex] = pokemons[i];
+                newIndex++; // Incrementar el índice del array compacto
+            }
+        }
+
+        // Ajustar la longitud del array eliminando los elementos sobrantes
+        while (pokemons.length > newIndex) {
+            pokemons.pop(); // Eliminar el último elemento del array
+        }
     }
 
 }
