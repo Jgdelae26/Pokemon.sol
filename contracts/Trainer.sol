@@ -107,8 +107,12 @@ contract Trainer is PokemonFactory{
         }
     }
 
-    function eliminarEntrenador(address _entrenador) external onlyOwner registrado {
-        
+    function eliminarEntrenador(address _entrenador) external onlyOwner registrado() {
+        // Recuperar el índice del entrenador
+        uint index = addressToEntrenadorIndex[_entrenador];
+
+        // Verificar que el entrenador tiene Pokémon asociados
+        require(entrenadores[index].numPokemons > 0, "El entrenador no tiene Pokemon para eliminar.");
     }
 
 }
