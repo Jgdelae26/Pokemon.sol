@@ -113,6 +113,16 @@ contract Trainer is PokemonFactory{
 
         // Verificar que el entrenador tiene Pokémon asociados
         require(entrenadores[index].numPokemons > 0, "El entrenador no tiene Pokemon para eliminar.");
+
+        // Eliminar Pokémones asociados del array y los mapeos
+        for (uint i = 0; i < pokemons.length; i++) {
+            if (pokemonToOwner[i] == _entrenador) {
+                // Eliminar Pokémon del mapeo
+                delete pokemonToOwner[i];
+                // Limpiar el espacio del Pokémon en el array
+                delete pokemons[i];
+            }
+        }
     }
 
 }
