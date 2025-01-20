@@ -24,8 +24,8 @@ Para asociar los pokémon a las direcciones de usuario, emplearemos que intríns
   
 Este contrato extiende las funcionalidades de PokemonFactory y gestiona a los entrenadores, incluyendo registro, actualización de estadísticas y consulta de ranking.
 
-·Características principales:
-Registro de Entrenadores:
+Características principales:
+·Registro de Entrenadores:
 
   -Función registrarEntrenador: Permite a los usuarios registrarse como entrenadores asignándoles un nombre único.
   Emite el evento EntrenadorRegistrado para notificar el registro.
@@ -43,9 +43,13 @@ Registro de Entrenadores:
   
   -Función obtenerRanking: Devuelve una lista de entrenadores ordenados por número de victorias usando el algoritmo QuickSort.
 
+  -Función eliminarEntrenador: Eliminar un entrenador y todos sus Pokémon asociados usando la funcion auxiliar de compactarArrayPokemons.
+
 ·Funciones Auxiliares:
 
   -QuickSort: Algoritmo recursivo para ordenar el ranking de entrenadores según sus victorias.
+
+  -compactarArrayPokemons: Elimina los huecos en el array de Pokémon después de la eliminación de los Pokémons.
 
 ·Seguridad:
 
