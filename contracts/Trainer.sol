@@ -131,9 +131,15 @@ contract Trainer is PokemonFactory{
         if (index != lastIndex) {
             // Mover el último entrenador al lugar del eliminado
             entrenadores[index] = entrenadores[lastIndex];
-            // Actualizar el índice en el mapeo para el entrenador movido
+            // Actualizar el índice en el mapeo para el entrenador movido(se intercambia)
             addressToEntrenadorIndex[_entrenador] = index;
-    }
+        }
+        // Reducir la longitud del array de entrenadores
+        entrenadores.pop();
+
+        // Eliminar datos del mapeo
+        delete trainerName[_entrenador];
+        delete addressToEntrenadorIndex[_entrenador];
     }
 
     // Función para compactar el array de Pokémon después de eliminaciones
