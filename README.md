@@ -46,3 +46,11 @@ En cuanto a la lógica de las batallas, entre Pokémon, he pensado en implementa
 - el elemento añadira un daño extra a los ataques (normales/especiales) de fuego vs agua, se potencia agua, fuego vs tierra, se potencia fuego, tierra vs agua se potencai agua. En el resto de los casos donde se combaten entre pokemons del mismo elemento no se potencia ninguno.  
 
 Por utlimo, se tendria que añadir un timepo de enfriamiento en caso de derrota ha dicho pokemon, añadir una variable de vida para cada pokemon, idear un sistema de emparejamiento para las batallas por nivel. Variable estado para saber si esta en batalla y limite de tiempo para las batallas.
+Cuando se gana tambien habra un intercambio de monedas del juego, el perdedor le debera pagar al gandor.  
+
+## Adquisicion de pokemons 
+Una forma sera comprnadolos por PokeCoins, los cuales se obtendran al ganar batallas.
+
+
+## Futuras mejoras
+Chainlink VRF para números aleatorios
