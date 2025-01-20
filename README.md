@@ -20,7 +20,7 @@ Para asociar los pokémon a las direcciones de usuario, emplearemos que intríns
   ·Entrenar pokemons
   ·Capturar pokemons
 
-  ## Trainer.sol
+## Trainer.sol
   
 Este contrato extiende las funcionalidades de PokemonFactory y gestiona a los entrenadores, incluyendo registro, actualización de estadísticas y consulta de ranking.
 
