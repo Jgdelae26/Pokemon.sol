@@ -3,9 +3,10 @@ pragma solidity ^0.8.20;
 //Imports
 import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
+import "./Trainer.sol";
 
 
-contract PokemonFactory is Ownable {
+contract PokemonFactory is Ownable, Trainer {
 
     constructor() Ownable(msg.sender) { 
     
@@ -93,6 +94,8 @@ contract PokemonFactory is Ownable {
         uint16 randPoder = _randomPoder(_trainerName);
         //se procesa el elemento
         string memory name = processElement(_elemento);
+        //Creamos entrenador
+        registrarEntrenador(msg.sender, _trainerName);
         //se genera el pokemon
         _createPokemon(name, _elemento, randPoder, _trainerName); 
     }
