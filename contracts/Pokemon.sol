@@ -36,9 +36,6 @@ contract PokemonFactory is Ownable {
     //Array de pokemons
     Pokemon[] public pokemons;
 
-    //Array de Entrenadores
-    Entrenador[] public entrenadores;
-
     //Para guardar el dueño de un pokemon, vamos a usar dos mapeos: el primero guardará el rastro de la dirección 
     //que posee ese pokemon y la otra guardará el rastro de cuantos pokemon posee cada propietario.
     mapping (uint => address) public pokemonToOwner;
