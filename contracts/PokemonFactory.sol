@@ -2,14 +2,13 @@
 pragma solidity ^0.8.20;
 //Imports
 
-import "@openzeppelin/contracts/access/Ownable.sol";
+
 import "./PokeOwnership.sol";
+import "./Trainer.sol";
 
-contract PokemonFactory is Ownable, PokeOwnership {
+contract PokemonFactory is PokeOwnership, Trainer {
 
-    constructor() Ownable(msg.sender) { 
-    
-    }
+
 
     //para generar eventos a nivel de web3
     event NewPokemon(uint pokemonId, string name, uint poder);
@@ -25,6 +24,7 @@ contract PokemonFactory is Ownable, PokeOwnership {
         string elemento;
         uint readyTime;
         uint8 level;
+        uint32 hpPokemon;
         //uint8 para obtimizar los costes de gas tenemos 256 maximo
         uint8 ataque;
         uint8 defensa;
@@ -33,38 +33,30 @@ contract PokemonFactory is Ownable, PokeOwnership {
         uint8 velocidad;
     }
 
-    struct Entrenador {
-        string name;
-        uint cuentaVictorias;
-        uint cuentaDerrtas;
-        uint numPokemonsTotales;
-    }
+
 
     //Array de pokemons
     Pokemon[] public pokemons;
 
-    //Array de Entrenadores
-    Entrenador[] public entrenadores;
+
 
     //Para guardar el dueño de un pokemon, vamos a usar dos mapeos: el primero guardará el rastro de la dirección 
     //que posee ese pokemon y la otra guardará el rastro de cuantos pokemon posee cada propietario.
     mapping (uint => address) public pokemonToOwner;
     mapping (address => uint) ownerPokemonCount;
 
-    //Mapping para guardar el nombre del entrenador
-    mapping (address => string) public trainerName;
-
 
     //Funcion principal para crear pokemons arraigados a un entrenador. Internal porque nos interesa que contratos que hereden de este puedan emplearla.
-    function _createPokemon(string memory _name, uint8 _idEspecie, string memory _elemento, uint16  _poder, string calldata _trainerName) internal {
+    function _createPokemon(string memory _name, uint8 _idEspecie, string memory _elemento, uint16  _poder) internal {
         //Tratamiento de los stats en funcion de la var aleatoria poder
         uint8 ataque = uint8(_poder % 10);
         uint8 defensa = uint8((_poder/10) % 10);
         uint8 ataqueEspecial = uint8((_poder/100) % 10);
         uint8 defensaEspecial = uint8((_poder/1000) % 10);
         uint8 velocidad= uint8((_poder/10**4) % 10);
+        uint32 hpPokemon = 50 + defensa * 2;
         //Se aumenta el array de Pokemon
-        pokemons.push(Pokemon(_name, _elemento, 0, 0, ataque, defensa, ataqueEspecial, defensaEspecial, velocidad));
+        pokemons.push(Pokemon(_name, _elemento, 0, 0, hpPokemon, ataque, defensa, ataqueEspecial, defensaEspecial, velocidad));
         //Se genera un id correspondiente al orden de creacion del pokemon
         uint id = pokemons.length - 1;
         //se asocia el id del pokemon con el usuario
@@ -72,7 +64,7 @@ contract PokemonFactory is Ownable, PokeOwnership {
         //Aumentamos la cuenta de pokemons que posee el entrenador
         ownerPokemonCount[msg.sender]++;
         //Asociacion de la dirección del usuario con el nombre de entrenador que ha escogido
-        trainerName[msg.sender]=_trainerName;
+        //trainerName[msg.sender]=_trainerName;
         //para generar eventos a nivel de web3
         emit NewPokemon(id, _name, _poder);
         /*Incorporacion del ERC1155:
@@ -117,10 +109,17 @@ contract PokemonFactory is Ownable, PokeOwnership {
         require(ownerPokemonCount[msg.sender] == 0);
         //se optiene el valor aleatorio de poder
         uint16 randPoder = _randomPoder(_trainerName);
+        //registrar entrenador
+        registrarEntrenador(_trainerName);
         //se procesa el elemento
         (string memory _name, uint8 _idEspecie) = processElement(_elemento);
         //se genera el pokemon
-        _createPokemon(_name, _idEspecie, _elemento, randPoder, _trainerName); 
+        _createPokemon(_name, _idEspecie, _elemento, randPoder);
+
+        // Recuperar el índice del entrenador
+        uint index = addressToEntrenadorIndex[msg.sender];
+        // Le suma uno al recuento de pokemons totales
+        entrenadores[index].numPokemons++; 
     }
     
 }
