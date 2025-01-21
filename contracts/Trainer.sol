@@ -12,7 +12,9 @@ contract Trainer is PokemonFactory{
         uint numPokemons;
     }
 
-    
+    //Array de Entrenadores
+    Entrenador[] public entrenadores;
+
     //Comprobar que el entrenador está registrado
     modifier registrado(){
         require(bytes(trainerName[msg.sender]).length > 0, "El entrenador no esta registrado");
