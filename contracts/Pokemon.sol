@@ -84,14 +84,18 @@ contract PokemonFactory is Trainer{
     function createPokemonInitial(string memory _elemento, string calldata _trainerName) public {
         //Cada entrenador solo puede tener un unico inicial
         require(ownerPokemonCount[msg.sender] == 0);
+        //Creamos entrenador
+        registrarEntrenador(msg.sender, _trainerName);
         //se optiene el valor aleatorio de poder
         uint16 randPoder = _randomPoder(_trainerName);
         //se procesa el elemento
         string memory name = processElement(_elemento);
-        //Creamos entrenador
-        registrarEntrenador(msg.sender, _trainerName);
         //se genera el pokemon
-        _createPokemon(name, _elemento, randPoder, _trainerName); 
+        _createPokemon(name, _elemento, randPoder, _trainerName);
+        // Recuperar el índice del entrenador
+        uint index = addressToEntrenadorIndex[msg.sender];
+        // Actualizar los mappings de entrenadores
+        entrenadores[index].numPokemons++; 
     }
     
     //Funcion para crear pokemons salvajes(_trainerName se usa para generar valores aleatorios con el nombre del entrenador)
