@@ -41,11 +41,6 @@ contract PokemonFactory is Ownable {
     mapping (uint => address) public pokemonToOwner;
     mapping (address => uint) ownerPokemonCount;
 
-    //Mapping para guardar el nombre del entrenador
-    mapping (address => string) public trainerName;
-    // Mapeo para rastrear el índice del entrenador en el array
-    mapping(address => uint) public addressToEntrenadorIndex;
-
     //Funcion principal para crear pokemons arraigados a un entrenador. Internal porque nos interesa que contratos que hereden de este puedan emplearla.
     function _createPokemon(string memory _name, string memory _elemento, uint16  _poder, string calldata _trainerName) internal {
         //Tratamiento de los stats en funcion de la var aleatoria poder
