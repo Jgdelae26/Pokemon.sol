@@ -33,13 +33,6 @@ contract PokemonFactory is Ownable {
         uint8 velocidad;
     }
 
-    struct Entrenador {
-        string name;
-        uint cuentaVictorias;
-        uint cuentaDerrotas;
-        uint numPokemons;
-    }
-
     //Array de pokemons
     Pokemon[] public pokemons;
 
