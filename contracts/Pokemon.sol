@@ -44,7 +44,7 @@ contract PokemonFactory is Ownable {
     //Funcion principal para crear pokemons arraigados a un entrenador. Internal porque nos interesa que contratos que hereden de este puedan emplearla.
     function _createPokemon(string memory _name, string memory _elemento, uint16  _poder, string calldata _trainerName) internal {
         //Verificar que el nombre del entrenador no es nulo
-        require(_trainerName != null, "Se necesita un nombre de entrenador");
+        require(bytes(_trainerName).length > 0, "Se necesita un nombre de entrenador");
         //Tratamiento de los stats en funcion de la var aleatoria poder
         uint8 ataque = uint8(_poder % 10);
         uint8 defensa = uint8((_poder/10) % 10);
@@ -118,8 +118,8 @@ contract PokemonFactory is Ownable {
         uint specieIndex = poderEnemigo % species.length;
 
         //Se aumenta el array de Pokemon
-        pokemons.push(Pokemon(species[specieIndex], element[specieIndex], hpEnemigo, ataqueEnemigo, defensaEnemigo, ataqueEspecialEnemigo, 
-        defensaEspecialEnemigo, velocidadEnemigo));
+        /*pokemons.push(Pokemon(species[specieIndex], element[specieIndex], hpEnemigo, ataqueEnemigo, defensaEnemigo, ataqueEspecialEnemigo, 
+        defensaEspecialEnemigo, velocidadEnemigo));*/
 
         //Se genera un id correspondiente al orden de creacion del pokemon
         uint id = pokemons.length - 1;
