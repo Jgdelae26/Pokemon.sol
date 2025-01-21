@@ -6,11 +6,6 @@
 	"output": {
 		"abi": [
 			{
-				"inputs": [],
-				"stateMutability": "nonpayable",
-				"type": "constructor"
-			},
-			{
 				"inputs": [
 					{
 						"internalType": "address",
@@ -163,6 +158,57 @@
 				"anonymous": false,
 				"inputs": [
 					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "entrenadorAddress",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					}
+				],
+				"name": "CambioDeNombre",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "entrenadorAddress",
+						"type": "address"
+					}
+				],
+				"name": "EntrenadorEliminado",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "entrenadorAddress",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					}
+				],
+				"name": "EntrenadorRegistrado",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
 						"indexed": false,
 						"internalType": "uint256",
 						"name": "pokemonId",
@@ -300,6 +346,43 @@
 				"inputs": [
 					{
 						"internalType": "address",
+						"name": "_entrenador",
+						"type": "address"
+					},
+					{
+						"internalType": "bool",
+						"name": "victoria",
+						"type": "bool"
+					}
+				],
+				"name": "actualizarVictorias",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "addressToEntrenadorIndex",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
 						"name": "account",
 						"type": "address"
 					},
@@ -348,6 +431,60 @@
 				"inputs": [
 					{
 						"internalType": "string",
+						"name": "_nuevoNombre",
+						"type": "string"
+					}
+				],
+				"name": "cambiarNombre",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_entrenador",
+						"type": "address"
+					}
+				],
+				"name": "consultarEntrenador",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "name",
+								"type": "string"
+							},
+							{
+								"internalType": "uint256",
+								"name": "cuentaVictorias",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "cuentaDerrotas",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "numPokemons",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct Trainer.Entrenador",
+						"name": "",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
 						"name": "_elemento",
 						"type": "string"
 					},
@@ -384,12 +521,12 @@
 					},
 					{
 						"internalType": "uint256",
-						"name": "cuentaDerrtas",
+						"name": "cuentaDerrotas",
 						"type": "uint256"
 					},
 					{
 						"internalType": "uint256",
-						"name": "numPokemonsTotales",
+						"name": "numPokemons",
 						"type": "uint256"
 					}
 				],
@@ -415,6 +552,41 @@
 						"internalType": "bool",
 						"name": "",
 						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "obtenerRanking",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "name",
+								"type": "string"
+							},
+							{
+								"internalType": "uint256",
+								"name": "cuentaVictorias",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "cuentaDerrotas",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "numPokemons",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct Trainer.Entrenador[]",
+						"name": "",
+						"type": "tuple[]"
 					}
 				],
 				"stateMutability": "view",
@@ -481,6 +653,11 @@
 						"internalType": "uint8",
 						"name": "level",
 						"type": "uint8"
+					},
+					{
+						"internalType": "uint32",
+						"name": "hpPokemon",
+						"type": "uint32"
 					},
 					{
 						"internalType": "uint8",
@@ -555,27 +732,27 @@
 				"inputs": [
 					{
 						"internalType": "address",
-						"name": "from",
+						"name": "_from",
 						"type": "address"
 					},
 					{
 						"internalType": "address",
-						"name": "to",
+						"name": "_to",
 						"type": "address"
 					},
 					{
 						"internalType": "uint256",
-						"name": "id",
+						"name": "_id",
 						"type": "uint256"
 					},
 					{
 						"internalType": "uint256",
-						"name": "value",
+						"name": "_value",
 						"type": "uint256"
 					},
 					{
 						"internalType": "bytes",
-						"name": "data",
+						"name": "_data",
 						"type": "bytes"
 					}
 				],
@@ -781,9 +958,6 @@
 				"safeBatchTransferFrom(address,address,uint256[],uint256[],bytes)": {
 					"details": "See {IERC1155-safeBatchTransferFrom}."
 				},
-				"safeTransferFrom(address,address,uint256,uint256,bytes)": {
-					"details": "See {IERC1155-safeTransferFrom}."
-				},
 				"setApprovalForAll(address,bool)": {
 					"details": "See {IERC1155-setApprovalForAll}."
 				},
@@ -958,19 +1132,27 @@
 			]
 		},
 		"contracts/PokeOwnership.sol": {
-			"keccak256": "0x1003077c6289d3700911e4a9f2dcb1acf41e4d3761a41b0d90e75098d223c0c2",
+			"keccak256": "0x76243ce8cf919bba4c3a64f375d5cfaeedd71bb696b185e061362d2c83f0aacb",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://ae36d1d010dda59931226fbde4094ddf0282019991709c2ef19fefdeb49286bb",
-				"dweb:/ipfs/QmbfuHZm78YRXxMAczUmsxgpSLeH5jx3nmv9w5jj2yLBno"
+				"bzz-raw://100db0c4006c8d0331da546106bd341ff6f19b4b81ed64b7e92bc263b11f18d3",
+				"dweb:/ipfs/Qmf2azcweGSXUw651E9yuHqEpQfn8vKQ6KWsAD8ZtwEYEU"
 			]
 		},
 		"contracts/PokemonFactory.sol": {
-			"keccak256": "0x730c6bc591259f35820930fb2177388cf849b09ed19e44a727a73b046887719f",
+			"keccak256": "0x46b6a2f902f82f02096cda058692792397fa768515a3daf43e7b5dd4f8cb316b",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://5f69e0420f5104f69c7c3c8788b4314b66c9710072e18761a779120e4d341c5d",
-				"dweb:/ipfs/QmZxFPEPtKUYhegJpVHd4Urz5oezfJ2mgJ7CK2Ws1vpitN"
+				"bzz-raw://59ad0d2cf040b2f166dc5044edb820cb6afcf00466ae12ee55b1d35f04663be6",
+				"dweb:/ipfs/QmUe25ASTJXqZ6fQhKE1F8wesLEpf38Qk4m4xjyozcFG52"
+			]
+		},
+		"contracts/Trainer.sol": {
+			"keccak256": "0x9440e76f6c1bfb32ce527a435ee15502c6d1a71ba6e03e8549b3ad3f2081792c",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://61a98d5ee2392dac6597cbf6d11abb98ada6fe7c9b9140f38b2de73ac8eb79c2",
+				"dweb:/ipfs/QmPtVphgszkbqpuri1z4oyPn6drbWVXZe18hWoc3ePpghx"
 			]
 		}
 	},
