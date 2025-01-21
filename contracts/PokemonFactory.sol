@@ -1,7 +1,8 @@
 // SPDX-License-Identifier: GPL-3.0
 pragma solidity ^0.8.20;
 //Imports
-import "@openzeppelin/contracts@4.8.2/access/Ownable.sol";
+
+import "@openzeppelin/contracts/access/Ownable.sol";
 import "./PokeOwnership.sol";
 
 contract PokemonFactory is Ownable, PokeOwnership {

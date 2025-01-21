@@ -339,27 +339,27 @@
 				"inputs": [
 					{
 						"internalType": "address",
-						"name": "from",
+						"name": "_from",
 						"type": "address"
 					},
 					{
 						"internalType": "address",
-						"name": "to",
+						"name": "_to",
 						"type": "address"
 					},
 					{
 						"internalType": "uint256",
-						"name": "id",
+						"name": "_id",
 						"type": "uint256"
 					},
 					{
 						"internalType": "uint256",
-						"name": "value",
+						"name": "_value",
 						"type": "uint256"
 					},
 					{
 						"internalType": "bytes",
-						"name": "data",
+						"name": "_data",
 						"type": "bytes"
 					}
 				],
@@ -516,9 +516,6 @@
 				},
 				"safeBatchTransferFrom(address,address,uint256[],uint256[],bytes)": {
 					"details": "See {IERC1155-safeBatchTransferFrom}."
-				},
-				"safeTransferFrom(address,address,uint256,uint256,bytes)": {
-					"details": "See {IERC1155-safeTransferFrom}."
 				},
 				"setApprovalForAll(address,bool)": {
 					"details": "See {IERC1155-setApprovalForAll}."
@@ -683,11 +680,11 @@
 			]
 		},
 		"contracts/PokeOwnership.sol": {
-			"keccak256": "0x1003077c6289d3700911e4a9f2dcb1acf41e4d3761a41b0d90e75098d223c0c2",
+			"keccak256": "0x2dd311047c996c69c6c75c195dd8157f433918fbb10a0357ce4aa844a8eef634",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://ae36d1d010dda59931226fbde4094ddf0282019991709c2ef19fefdeb49286bb",
-				"dweb:/ipfs/QmbfuHZm78YRXxMAczUmsxgpSLeH5jx3nmv9w5jj2yLBno"
+				"bzz-raw://1368ebed7fbbf6914ad46d03e68ce25a2061947314ca6238e99ee124af5f5782",
+				"dweb:/ipfs/Qma7hECnnGnRR3gfHcgvCbHdT4vTwdTDJztwbWMeRQDEh4"
 			]
 		}
 	},

@@ -3,7 +3,8 @@ pragma solidity ^0.8.20;
 //Imports
 import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
 
-contract PokeOwnership is ERC1155,  {
+
+contract PokeOwnership is ERC1155 {
     constructor() ERC1155("https://ipfs.io/ipfs/{id}") { }
 
     function pokemint(address _trainer, uint256[] memory _ids, uint256[] memory _amounts) internal {
@@ -11,10 +12,7 @@ contract PokeOwnership is ERC1155,  {
     }
 
     function safeTransferFrom(address _from, address _to, uint256 _id, uint256 _value, bytes memory _data) public override {
-        ownerPokemonCount[_to]++;
-        ownerPokemonCount[_from]--;
-        pokemonToOwner[_tokenId] = _to;
-        super.safeTransferFrom(_from, _to, _id ,_value, _data);        
+      
     }
     /*
     Funciones de la interfaz del erc 1155:
