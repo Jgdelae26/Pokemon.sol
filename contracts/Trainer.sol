@@ -15,6 +15,11 @@ contract Trainer is PokemonFactory{
     //Array de Entrenadores
     Entrenador[] public entrenadores;
 
+    //Mapping para guardar el nombre del entrenador
+    mapping (address => string) public trainerName;
+    // Mapeo para rastrear el índice del entrenador en el array
+    mapping(address => uint) public addressToEntrenadorIndex;
+
     //Comprobar que el entrenador está registrado
     modifier registrado(){
         require(bytes(trainerName[msg.sender]).length > 0, "El entrenador no esta registrado");
