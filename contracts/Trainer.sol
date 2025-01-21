@@ -1,9 +1,16 @@
 // SPDX-License-Identifier: GPL-3.0
 pragma solidity ^0.8.20;
 
+//Imports
+import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 import "./Pokemon.sol";
 
-contract Trainer is PokemonFactory{
+contract Trainer is Ownable{
+
+    constructor() Ownable(msg.sender) { 
+    
+    }
 
     struct Entrenador {
         string name;

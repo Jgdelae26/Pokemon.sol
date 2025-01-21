@@ -1,16 +1,10 @@
 // SPDX-License-Identifier: GPL-3.0
 pragma solidity ^0.8.20;
-//Imports
-import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
+
 import "./Trainer.sol";
 
 
-contract PokemonFactory is Ownable, Trainer {
-
-    constructor() Ownable(msg.sender) { 
-    
-    }
+contract PokemonFactory is Trainer{
 
     //para generar eventos a nivel de web3
     event NewPokemon(uint pokemonId, string name, uint poder);
