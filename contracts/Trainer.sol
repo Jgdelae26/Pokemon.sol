@@ -5,6 +5,14 @@ import "./Pokemon.sol";
 
 contract Trainer is PokemonFactory{
 
+    struct Entrenador {
+        string name;
+        uint cuentaVictorias;
+        uint cuentaDerrotas;
+        uint numPokemons;
+    }
+
+    
     //Comprobar que el entrenador está registrado
     modifier registrado(){
         require(bytes(trainerName[msg.sender]).length > 0, "El entrenador no esta registrado");
