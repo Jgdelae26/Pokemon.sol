@@ -122,7 +122,7 @@ contract Trainer is PokemonFactory{
         }
     }
 
-    function eliminarEntrenador(address _entrenador) external onlyOwner registrado() {
+    /*function eliminarEntrenador(address _entrenador) external onlyOwner registrado() {
         // Recuperar el índice del entrenador
         uint index = addressToEntrenadorIndex[_entrenador];
 
@@ -178,6 +178,6 @@ contract Trainer is PokemonFactory{
         while (pokemons.length > newIndex) {
             pokemons.pop(); // Eliminar el último elemento del array
         }
-    }
+    }*/
 
 }
