@@ -34,7 +34,7 @@ contract Trainer is PokemonFactory{
     event EntrenadorEliminado(address entrenadorAddress);   
 
     // Función para registrar un entrenador
-    function registrarEntrenador(address _entrenador, string calldata _trainerName) external{
+    function registrarEntrenador(address _entrenador, string calldata _trainerName) internal{
         // Verificar si el entrenador ya está registrado
         require(bytes(trainerName[msg.sender]).length == 0, "El entrenador ya esta registrado");
 
