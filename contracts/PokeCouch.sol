@@ -29,7 +29,7 @@ contract PokeCouch is PokemonFactory {
     }
 
     //Funcion para simular batallas pokemon con bots de estats aleatorias 
-    function PokeBattleSalvaje(uint _pokemonId) public propietario(_pokemonId) {
+    function pokeBattleSalvaje(uint _pokemonId) public propietario(_pokemonId) {
         Pokemon storage myPokemon = pokemons[_pokemonId];
         uint statsPoke = myPokemon.ataque + myPokemon.ataqueEspecial + myPokemon.defensa + myPokemon.defensaEspecial + myPokemon.hpPokemon + myPokemon.velocidad;
         require(_isReady(myPokemon));
