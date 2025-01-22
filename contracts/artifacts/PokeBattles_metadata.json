@@ -1,0 +1,1251 @@
+{
+	"compiler": {
+		"version": "0.8.26+commit.8a97fa7a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "sender",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "balance",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "needed",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					}
+				],
+				"name": "ERC1155InsufficientBalance",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "approver",
+						"type": "address"
+					}
+				],
+				"name": "ERC1155InvalidApprover",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "idsLength",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "valuesLength",
+						"type": "uint256"
+					}
+				],
+				"name": "ERC1155InvalidArrayLength",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "operator",
+						"type": "address"
+					}
+				],
+				"name": "ERC1155InvalidOperator",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "receiver",
+						"type": "address"
+					}
+				],
+				"name": "ERC1155InvalidReceiver",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "sender",
+						"type": "address"
+					}
+				],
+				"name": "ERC1155InvalidSender",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "operator",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					}
+				],
+				"name": "ERC1155MissingApprovalForAll",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					}
+				],
+				"name": "OwnableInvalidOwner",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "OwnableUnauthorizedAccount",
+				"type": "error"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "operator",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "bool",
+						"name": "approved",
+						"type": "bool"
+					}
+				],
+				"name": "ApprovalForAll",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "entrenador",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "pokemonId",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "statsWild",
+						"type": "uint256"
+					}
+				],
+				"name": "BatallaGanada",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "entrenador",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "pokemonId",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "statsWild",
+						"type": "uint256"
+					}
+				],
+				"name": "BatallaPerdida",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "entrenadorAddress",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					}
+				],
+				"name": "CambioDeNombre",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "entrenadorAddress",
+						"type": "address"
+					}
+				],
+				"name": "EntrenadorEliminado",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "entrenadorAddress",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					}
+				],
+				"name": "EntrenadorRegistrado",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "pokemonId",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "poder",
+						"type": "uint256"
+					}
+				],
+				"name": "NewPokemon",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "previousOwner",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "OwnershipTransferred",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "operator",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "from",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256[]",
+						"name": "ids",
+						"type": "uint256[]"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256[]",
+						"name": "values",
+						"type": "uint256[]"
+					}
+				],
+				"name": "TransferBatch",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "operator",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "from",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "value",
+						"type": "uint256"
+					}
+				],
+				"name": "TransferSingle",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "value",
+						"type": "string"
+					},
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
+					}
+				],
+				"name": "URI",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "addressToEntrenadorIndex",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
+					}
+				],
+				"name": "balanceOf",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address[]",
+						"name": "accounts",
+						"type": "address[]"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "ids",
+						"type": "uint256[]"
+					}
+				],
+				"name": "balanceOfBatch",
+				"outputs": [
+					{
+						"internalType": "uint256[]",
+						"name": "",
+						"type": "uint256[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_pokemonId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "_newName",
+						"type": "string"
+					}
+				],
+				"name": "changeName",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_entrenador",
+						"type": "address"
+					}
+				],
+				"name": "consultarEntrenador",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "name",
+								"type": "string"
+							},
+							{
+								"internalType": "uint256",
+								"name": "cuentaVictorias",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "cuentaDerrotas",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "numPokemons",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct Trainer.Entrenador",
+						"name": "",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_elemento",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_trainerName",
+						"type": "string"
+					}
+				],
+				"name": "createPokemonInitial",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "entrenadores",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "cuentaVictorias",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "cuentaDerrotas",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "numPokemons",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_owner",
+						"type": "address"
+					}
+				],
+				"name": "getPokemonByOwner",
+				"outputs": [
+					{
+						"internalType": "uint256[]",
+						"name": "",
+						"type": "uint256[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "operator",
+						"type": "address"
+					}
+				],
+				"name": "isApprovedForAll",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_pokemonId",
+						"type": "uint256"
+					}
+				],
+				"name": "levelUp",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "owner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_pokemonId",
+						"type": "uint256"
+					}
+				],
+				"name": "pokeBattleSalvaje",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "pokemonToOwner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "pokemons",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "elemento",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "readyTime",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint8",
+						"name": "level",
+						"type": "uint8"
+					},
+					{
+						"internalType": "uint32",
+						"name": "hpPokemon",
+						"type": "uint32"
+					},
+					{
+						"internalType": "uint8",
+						"name": "ataque",
+						"type": "uint8"
+					},
+					{
+						"internalType": "uint8",
+						"name": "defensa",
+						"type": "uint8"
+					},
+					{
+						"internalType": "uint8",
+						"name": "ataqueEspecial",
+						"type": "uint8"
+					},
+					{
+						"internalType": "uint8",
+						"name": "defensaEspecial",
+						"type": "uint8"
+					},
+					{
+						"internalType": "uint8",
+						"name": "velocidad",
+						"type": "uint8"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "renounceOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "from",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "ids",
+						"type": "uint256[]"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "values",
+						"type": "uint256[]"
+					},
+					{
+						"internalType": "bytes",
+						"name": "data",
+						"type": "bytes"
+					}
+				],
+				"name": "safeBatchTransferFrom",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_from",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_id",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_value",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bytes",
+						"name": "_data",
+						"type": "bytes"
+					}
+				],
+				"name": "safeTransferFrom",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "operator",
+						"type": "address"
+					},
+					{
+						"internalType": "bool",
+						"name": "approved",
+						"type": "bool"
+					}
+				],
+				"name": "setApprovalForAll",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_fee",
+						"type": "uint256"
+					}
+				],
+				"name": "setLevelUpFee",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes4",
+						"name": "interfaceId",
+						"type": "bytes4"
+					}
+				],
+				"name": "supportsInterface",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "trainerName",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "transferOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "uri",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "withdraw",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"errors": {
+				"ERC1155InsufficientBalance(address,uint256,uint256,uint256)": [
+					{
+						"details": "Indicates an error related to the current `balance` of a `sender`. Used in transfers.",
+						"params": {
+							"balance": "Current balance for the interacting account.",
+							"needed": "Minimum amount required to perform a transfer.",
+							"sender": "Address whose tokens are being transferred.",
+							"tokenId": "Identifier number of a token."
+						}
+					}
+				],
+				"ERC1155InvalidApprover(address)": [
+					{
+						"details": "Indicates a failure with the `approver` of a token to be approved. Used in approvals.",
+						"params": {
+							"approver": "Address initiating an approval operation."
+						}
+					}
+				],
+				"ERC1155InvalidArrayLength(uint256,uint256)": [
+					{
+						"details": "Indicates an array length mismatch between ids and values in a safeBatchTransferFrom operation. Used in batch transfers.",
+						"params": {
+							"idsLength": "Length of the array of token identifiers",
+							"valuesLength": "Length of the array of token amounts"
+						}
+					}
+				],
+				"ERC1155InvalidOperator(address)": [
+					{
+						"details": "Indicates a failure with the `operator` to be approved. Used in approvals.",
+						"params": {
+							"operator": "Address that may be allowed to operate on tokens without being their owner."
+						}
+					}
+				],
+				"ERC1155InvalidReceiver(address)": [
+					{
+						"details": "Indicates a failure with the token `receiver`. Used in transfers.",
+						"params": {
+							"receiver": "Address to which tokens are being transferred."
+						}
+					}
+				],
+				"ERC1155InvalidSender(address)": [
+					{
+						"details": "Indicates a failure with the token `sender`. Used in transfers.",
+						"params": {
+							"sender": "Address whose tokens are being transferred."
+						}
+					}
+				],
+				"ERC1155MissingApprovalForAll(address,address)": [
+					{
+						"details": "Indicates a failure with the `operator`’s approval. Used in transfers.",
+						"params": {
+							"operator": "Address that may be allowed to operate on tokens without being their owner.",
+							"owner": "Address of the current owner of a token."
+						}
+					}
+				],
+				"OwnableInvalidOwner(address)": [
+					{
+						"details": "The owner is not a valid owner account. (eg. `address(0)`)"
+					}
+				],
+				"OwnableUnauthorizedAccount(address)": [
+					{
+						"details": "The caller account is not authorized to perform an operation."
+					}
+				]
+			},
+			"events": {
+				"ApprovalForAll(address,address,bool)": {
+					"details": "Emitted when `account` grants or revokes permission to `operator` to transfer their tokens, according to `approved`."
+				},
+				"TransferBatch(address,address,address,uint256[],uint256[])": {
+					"details": "Equivalent to multiple {TransferSingle} events, where `operator`, `from` and `to` are the same for all transfers."
+				},
+				"TransferSingle(address,address,address,uint256,uint256)": {
+					"details": "Emitted when `value` amount of tokens of type `id` are transferred from `from` to `to` by `operator`."
+				},
+				"URI(string,uint256)": {
+					"details": "Emitted when the URI for token type `id` changes to `value`, if it is a non-programmatic URI. If an {URI} event was emitted for `id`, the standard https://eips.ethereum.org/EIPS/eip-1155#metadata-extensions[guarantees] that `value` will equal the value returned by {IERC1155MetadataURI-uri}."
+				}
+			},
+			"kind": "dev",
+			"methods": {
+				"balanceOf(address,uint256)": {
+					"details": "See {IERC1155-balanceOf}."
+				},
+				"balanceOfBatch(address[],uint256[])": {
+					"details": "See {IERC1155-balanceOfBatch}. Requirements: - `accounts` and `ids` must have the same length."
+				},
+				"isApprovedForAll(address,address)": {
+					"details": "See {IERC1155-isApprovedForAll}."
+				},
+				"owner()": {
+					"details": "Returns the address of the current owner."
+				},
+				"renounceOwnership()": {
+					"details": "Leaves the contract without owner. It will not be possible to call `onlyOwner` functions. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby disabling any functionality that is only available to the owner."
+				},
+				"safeBatchTransferFrom(address,address,uint256[],uint256[],bytes)": {
+					"details": "See {IERC1155-safeBatchTransferFrom}."
+				},
+				"setApprovalForAll(address,bool)": {
+					"details": "See {IERC1155-setApprovalForAll}."
+				},
+				"supportsInterface(bytes4)": {
+					"details": "See {IERC165-supportsInterface}."
+				},
+				"transferOwnership(address)": {
+					"details": "Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner."
+				},
+				"uri(uint256)": {
+					"details": "See {IERC1155MetadataURI-uri}. This implementation returns the same URI for *all* token types. It relies on the token type ID substitution mechanism https://eips.ethereum.org/EIPS/eip-1155#metadata[defined in the ERC]. Clients calling this function must replace the `\\{id\\}` substring with the actual token type ID."
+				}
+			},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/PokeBattles.sol": "PokeBattles"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"@openzeppelin/contracts/access/Ownable.sol": {
+			"keccak256": "0xe889e9f6b8469155c967f403ad7508eaa66af8cad1cb9a003536a8e4f281d348",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://e6e32c81c8d84199eda0de40d33bb77c7acbb482e3f545d5cfba8195af0a88e0",
+				"dweb:/ipfs/Qmaf1WAinzjYWGNxRzCTmn2QABFWS912HwC8eiD7cyTgis"
+			]
+		},
+		"@openzeppelin/contracts/interfaces/draft-IERC6093.sol": {
+			"keccak256": "0xe53865a480e99e5c35c3b1fd673cdccae2b5ddb7e0260e82b19d40d99980e146",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://bd6c5d37ed3bbb994f5d63f62bfec105dd9dbd11ae8cecdb93232d64a9677143",
+				"dweb:/ipfs/QmefNhF6r94wZBqL2XxZMvkrGr4WgLLoWts5oasPWpMUun"
+			]
+		},
+		"@openzeppelin/contracts/token/ERC1155/ERC1155.sol": {
+			"keccak256": "0xdc7badaadfac6fef1f8a3a692e70bf504b4f06c0cef04cca0041fc265b71339e",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://f40cd03745484b522d7581c70e6922858f757bf4bb2d65762b086b01cf51a07d",
+				"dweb:/ipfs/QmXAhYCqbb8PAXSVawtb94jFbZCwRFKucf6fvraBaYktgw"
+			]
+		},
+		"@openzeppelin/contracts/token/ERC1155/IERC1155.sol": {
+			"keccak256": "0x775d272f05d30976c2f6e0600983102e8958a1e9df56c04c6dfd540496e63475",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://ed6e3fc7497e1a99e35dab4e85e71972b17f0658b6975e0954fdc98056b42a17",
+				"dweb:/ipfs/QmTbwnYNndsutBUuuwfdSpWibdGLwBZ6F7XYt38Bou6Umc"
+			]
+		},
+		"@openzeppelin/contracts/token/ERC1155/IERC1155Receiver.sol": {
+			"keccak256": "0x58254e89522201b3535abea2d69a29b3150581629719b87c039091da3cdca386",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://604cdced0726e7e116c7ad1cbc40826538e8caade77b7b40a7d70a8b18c1c3b5",
+				"dweb:/ipfs/QmfLSYCNnnmKJmqjybvneuqiKB8LgNsqq5PvV8cT9TDy1s"
+			]
+		},
+		"@openzeppelin/contracts/token/ERC1155/extensions/IERC1155MetadataURI.sol": {
+			"keccak256": "0x25df0d8112e2772c9af6c8ce42c6e73fad9555348efee4dc499e8e3e8324b927",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://d5cdc3edffed8d3a6f894be9deb1648a0d7fc59ad7c8279d55474fe2d98ca4d9",
+				"dweb:/ipfs/QmXmgqHvmnVCVdfNCUbbfVzWxAExnvJC7R3aAk8nrzLBaK"
+			]
+		},
+		"@openzeppelin/contracts/token/ERC1155/utils/ERC1155Utils.sol": {
+			"keccak256": "0x86bf66dff8f3e8f32dcf148d2cae88a5dde832751899eb7fb7e56771d5f53429",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://6b0675c7ae289b7078b5ea0260ab3530cff790d6deb2b27400d6638d17f38c13",
+				"dweb:/ipfs/QmTSyfUnZHhHzWkqr8wdLiSM5Mvw2TCGuNYyL2zubpq9Xk"
+			]
+		},
+		"@openzeppelin/contracts/utils/Arrays.sol": {
+			"keccak256": "0xae690a737b0ce387e4fe73badab83355aa6437fb50eb80f59e0c938a8b1fb8ae",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://9d5428635d082a4d9439b453dc056e1d3622ce255d00073badcc6ec78d090893",
+				"dweb:/ipfs/QmWFXc1oSRvYv2qi9ZKM9SssQZxpkoJ5H4MkbuC17jePre"
+			]
+		},
+		"@openzeppelin/contracts/utils/Comparators.sol": {
+			"keccak256": "0x7f4650254726760e91a877b273fd023845075b35c98d3b209118c41e4d18b49f",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://6622ffead13ec5a2a0449694f6be8d86813e88b006839a88fa41bfa77ad4df16",
+				"dweb:/ipfs/QmXgkhXvg5qLZzrnXWzQJvDwLuQNWztTKLJnkCyPaypfKu"
+			]
+		},
+		"@openzeppelin/contracts/utils/Context.sol": {
+			"keccak256": "0x3dcd533a3f709bda89bb8e649eb97aed96578e606f3796609544b1dcff975a0b",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://83fa9b15077fd2f33f6c175d694e2f7ae9c9a289c7feaca40aa7d6feb8d87c26",
+				"dweb:/ipfs/QmQLfKCJ7mjiEeCGN1sHgWT8wjAMbAmBqcBVoQQyUZa5ws"
+			]
+		},
+		"@openzeppelin/contracts/utils/Panic.sol": {
+			"keccak256": "0x65fd7c9cac0812d510bbaac59b007da1df6f3820f939fca04fd2b7ed07e341c6",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://f30f7cf8b553278b1bbad1f6aaf4b227b98b1532b3c16dbca92d815d627779df",
+				"dweb:/ipfs/QmTkA1v7mrd2ymdTcPYFuNjguKhQx99npcPYKAdMfgfKvB"
+			]
+		},
+		"@openzeppelin/contracts/utils/SlotDerivation.sol": {
+			"keccak256": "0x83906bb04e007bb423c914de3d48d2c0ae65ab4adc178969aed206b63613b7ef",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://4ede496c90f2b806973ade349103845bcbe23f65630df11e6e34f7c9ce716cce",
+				"dweb:/ipfs/QmZdEeFyV8fyMTRYMGg5c3zH1SECwdGDzx8VAeGbXR71yA"
+			]
+		},
+		"@openzeppelin/contracts/utils/StorageSlot.sol": {
+			"keccak256": "0xb9355bac6de0c0dd42a7f3c4ad3e6e7bdff95109e1bb6ba5be0dce666b314921",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://b8449ecfc29ae42905bcfd8fa232bd73eccb14365f1894a3cc1abcce90639379",
+				"dweb:/ipfs/QmWwdkEJXZjk57T7T5JRogJzEhcT7JpnmxEVfHAwFSMuZ1"
+			]
+		},
+		"@openzeppelin/contracts/utils/introspection/ERC165.sol": {
+			"keccak256": "0xb28144ffc2bca9d3e8e3e20b630d1d97b04aa7c9e00683d41211b241a65f5644",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://da447bb66b870656cd1f599cb8a173579d66ddf762c9d172391e409debe33d1d",
+				"dweb:/ipfs/QmTyEdMigTpMBw5NTMoVfcpKQQ1pxdXWAbey3XBcUdN95q"
+			]
+		},
+		"@openzeppelin/contracts/utils/introspection/IERC165.sol": {
+			"keccak256": "0xdbf01f069eb0b0a7a6ace73b250fdeb7e338d719bb40b5dd1fe7069004a36607",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://1fc4a1dfe79b2adc6e22af84838c217946853d28a4291fcd8bbcc6fb226a0470",
+				"dweb:/ipfs/QmaJbxCcdE76P1a8rjxkBqTXAfF11XebfwURamUB92G4WN"
+			]
+		},
+		"@openzeppelin/contracts/utils/math/Math.sol": {
+			"keccak256": "0x6fc9a48c3d39d70e64acac472509822e001b9ca996653576efb17b19c56b38f0",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://5fb4a208e464691b05cc33477e138dc837372e8fe3192efee08094aa5fad4acc",
+				"dweb:/ipfs/QmcLuyckN8xRPBNDVV9dqBn1FNQrN9R3GktDJSW3s7r2ts"
+			]
+		},
+		"@openzeppelin/contracts/utils/math/SafeCast.sol": {
+			"keccak256": "0xf1e73884b1e40057009853b1ee55ec66413cfa5eaa9074e5dd85bd070ea8b91c",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://1d29fd43e41bd73ac0fb65ac77c309c88651a42f8e49989cf1558f64f731697b",
+				"dweb:/ipfs/Qmd61ZCYWHj9PJ3uSXaJekif8tkKgmfU6PLunszwhY2QX3"
+			]
+		},
+		"contracts/PokeBattles.sol": {
+			"keccak256": "0x1d791105e46459195c140280eb7d407b2fadb24cab5198b03d767aa9742fa237",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://e9eefb485255c2f3c48cad555ac8be7c9ef22e48cc96d1a3d539a3d5a7b138bf",
+				"dweb:/ipfs/QmXHBkFRHs927zpigBfUQBmfZQi2AStjjSCN73nm9eGQB5"
+			]
+		},
+		"contracts/PokeCouch.sol": {
+			"keccak256": "0xfdcbe8fbbab2f28b223cb80d72448097350f853fe1b93b47e5262a26c46a94b1",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://9abe1040f386de3eb2bf7f5691238527f2712ad0fcacf02ccf802bf5272a5dd7",
+				"dweb:/ipfs/QmX2jCAcSpAPCsdBfV22TS4ataVYr23YPHJS9wyjMhB4bi"
+			]
+		},
+		"contracts/PokeFunctions.sol": {
+			"keccak256": "0xeaafe0bb39b38a240b2c11ef710aa1d08cb30120d1438d3f06e354f3d36e39a0",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://5ecdc9b70e87c53683346e5b874c73ab588c4cc7fd65ecbe4ca27fe8db222358",
+				"dweb:/ipfs/QmbyKNMCPBFSuctAxwCBewubFRycFVYo2bE2b4kCXneX32"
+			]
+		},
+		"contracts/PokeOwnership.sol": {
+			"keccak256": "0xa48636d9a08e17eb26b3b5ddc6c2645591be8bbc7876e101e495a74f7f8142ae",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://4a3b5997821a8c1fe8fa8d898c0afdefbae939f7e0978131606341e4f414b0bb",
+				"dweb:/ipfs/Qmf9VZUpF8ZJQ1W4WhYPRZLL29iFqFkZfNJGaZHzBgQp45"
+			]
+		},
+		"contracts/PokemonFactory.sol": {
+			"keccak256": "0x05e8f6d3dfc04988277bbc00dc7df8cacea76ee284e2bb8a1490d2afe5812e05",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://214233ae50ece5d597cd04cd122cd414bc23472c6f4cbf5a5f54c7da4c013ff2",
+				"dweb:/ipfs/QmcSNKAtPeKhJnxFHhhmtovHHBuza78n5cNkf63B7NUC2m"
+			]
+		},
+		"contracts/Trainer.sol": {
+			"keccak256": "0x806b879f95dd969ee9c65f8a692eab3fef74efc77edfd9e592b2f1b788300ac0",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://8ad15b55aacd90d14ef4dd31259fad55c641d15d54482718dc667425560feba8",
+				"dweb:/ipfs/Qmeq51MVCH5tJB58oCnnd36dfkUEZanyGSZbX3buTgTzXv"
+			]
+		}
+	},
+	"version": 1
+}

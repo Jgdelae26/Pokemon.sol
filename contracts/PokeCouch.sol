@@ -10,6 +10,10 @@ contract PokeCouch is PokemonFactory {
         require(pokemonToOwner[_pokemonId] == msg.sender, "No eres el propietario de este Pokemon.");
         _;
     }
+
+    event BatallaGanada(address indexed entrenador, uint pokemonId, uint statsWild);
+    event BatallaPerdida(address indexed entrenador, uint pokemonId, uint statsWild);
+
     
     uint randNonce = 0;
     
@@ -38,10 +42,12 @@ contract PokeCouch is PokemonFactory {
         //si pierdes
         if ( _statsWild >= statsPoke) {
             _disparadorDeRecu(myPokemon);
+            emit BatallaPerdida(msg.sender, _pokemonId, _statsWild);
         } else {
             uint8 indexStat = uint8(poderWild % 10);
             uint8 cantidadSubida = uint8((poderWild/10) % 10);
             _modificacionEstats(myPokemon,indexStat,cantidadSubida );
+            emit BatallaGanada(msg.sender, _pokemonId, _statsWild);
         }
     }
 
