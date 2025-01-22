@@ -40,7 +40,7 @@ contract Trainer is Ownable {
     event EntrenadorEliminado(address entrenadorAddress);   
 
     // Función para registrar un entrenador
-    function registrarEntrenador(string calldata _trainerName) internal{
+    function registrarEntrenador(string calldata _trainerName) external{
 
         // Crear un nuevo entrenador y añadirlo al array
         entrenadores.push(Entrenador(_trainerName, 0, 0, 0));
