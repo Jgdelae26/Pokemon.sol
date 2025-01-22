@@ -57,7 +57,8 @@ contract Trainer is Ownable {
     }
     
     //Función para cambiar nombre de entrenador
-    function cambiarNombre(string memory _nuevoNombre) public registrado(){
+    //AUN NO IMPLEMENTADA NO DEFINITIVA
+    function cambiarNombre(string memory _nuevoNombre) private registrado(){
         // Recuperar el índice del entrenador
         uint index = addressToEntrenadorIndex[msg.sender];
         // Actualizar los mappings de entrenadores
@@ -77,8 +78,9 @@ contract Trainer is Ownable {
         return entrenadores[index];
     }
 
-    // Función para actualizar las estadísticas de los entrenadores
-    function actualizarVictorias(address _entrenador, bool victoria) external registrado() onlyOwner {
+    // Función para actualizar las estadísticas de los entrenadores 
+    //FALTA PULIR
+    function actualizarVictorias(address _entrenador, bool victoria) private registrado() onlyOwner {
         //Recuperar el índice del entrenador
         uint index = addressToEntrenadorIndex[_entrenador];
         //Incrementar las victorias y derrotas en función de la variable booleana "victoria"
@@ -90,14 +92,16 @@ contract Trainer is Ownable {
     }
     
     //Consultar el ranking de entrenadores
-    function obtenerRanking() public view returns (Entrenador[] memory) {
+    //FALTA PULIR
+    function obtenerRanking() private view returns (Entrenador[] memory) {
         Entrenador[] memory rankingEntrenadores = entrenadores; // Creamos una copia del array de entrenadores
         quickSort(rankingEntrenadores, int(0), int(rankingEntrenadores.length - 1)); // Llamamos a QuickSort para ordenar el array
         return rankingEntrenadores; // Devolvemos el array ordenado
     }
 
     // Función recursiva de QuickSort para ordenar el array(Añadir al contrato de funciones)
-    function quickSort(Entrenador[] memory arr, int left, int right) internal pure {
+    //FALTA PULIR
+    function quickSort(Entrenador[] memory arr, int left, int right) private pure {
         // Condición base de la recursión: Si el rango de índices es válido (left < right)
         if (left >= right) return;
 

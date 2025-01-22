@@ -4,9 +4,9 @@ pragma solidity ^0.8.20;
 
 
 import "./PokeOwnership.sol";
-import "./Trainer.sol";
 
-contract PokemonFactory is PokeOwnership, Trainer {
+
+contract PokemonFactory is PokeOwnership {
 
     //para generar eventos a nivel de web3
     event NewPokemon(uint pokemonId, string name, uint poder);
@@ -16,7 +16,8 @@ contract PokemonFactory is PokeOwnership, Trainer {
     uint32 poderModulus = uint32(10 ** poderDigits);
     //Tiempode enfriamiento para las derrotas ()
     uint tiempoRecu = 1 days;
-
+    
+    /* pasado a pokeOwnership
     struct Pokemon {
         string name;
         string elemento;
@@ -33,6 +34,8 @@ contract PokemonFactory is PokeOwnership, Trainer {
 
     //Array de pokemons
     Pokemon[] public pokemons;
+
+    */
 
     /*Mappings moved to the base contract
     mapping (uint => address) public pokemonToOwner;
@@ -74,6 +77,17 @@ contract PokemonFactory is PokeOwnership, Trainer {
         pokemint(msg.sender, ids, amounts);
     }
 
+    function _statsWildPokemon(uint _poder) internal pure returns(uint256 statsWild){
+        uint8 ataque = uint8(_poder % 10);
+        uint8 defensa = uint8((_poder/10) % 10);
+        uint8 ataqueEspecial = uint8((_poder/100) % 10);
+        uint8 defensaEspecial = uint8((_poder/1000) % 10);
+        uint8 velocidad= uint8((_poder/10**4) % 10);
+        uint32 hpPokemon = 50 + defensa * 2;
+        return ataque + defensa + ataqueEspecial + defensaEspecial + velocidad + hpPokemon;
+    }
+
+
     //keccak256 es una version de SHA3 que es una funcion Hash que retorna 256-bits en un formato de numero hexadecimal 
     //que empleamos como pseudo aleatorio, DEBERIAMOS ENCONTRAR UNA MANERA MEJOR 
     function _randomPoder(string calldata _str) private view returns(uint16) {
@@ -113,6 +127,41 @@ contract PokemonFactory is PokeOwnership, Trainer {
         uint index = addressToEntrenadorIndex[msg.sender];
         // Le suma uno al recuento de pokemons totales
         entrenadores[index].numPokemons++; 
+    }
+
+    //Función para ver los poquemons que tiene una direccion en concreto. No es la forma que seria mas practica pero si la mas eficiente, ya que
+    // trabajamos con un array nuevo de tipo memory y no modificamos ningun array de los que tenemos en storage directamente entonces este array en memory se
+    //creara cada vez que se llame la funcion y se recorrera el array en storage buscando los pokemon de la direeccion. Poco eficiente pero barat.
+    //Mejor explicado en https://cryptozombies.io/es/lesson/3/chapter/12
+    function getPokemonByOwner(address _owner)
+        external
+        view
+        returns (uint256[] memory)
+    {
+        uint256[] memory result = new uint256[](ownerPokemonCount[_owner]);
+        uint256 counter = 0;
+        for (uint256 i = 0; i < pokemons.length; i++) {
+            if (pokemonToOwner[i] == _owner) {
+                result[counter] = i;
+                counter++;
+            }
+        }
+        return result;
+    }
+
+    //Aumento de alguna de las stats dentro del struc estas estan indexadas y se puede acceder a ellas mediante
+    function _modificacionEstats(Pokemon storage _myPokemon, uint8 _indexStat, uint8 _cantidadSubida) internal {
+        if (_indexStat == 1) {
+            _myPokemon.ataque = _myPokemon.ataque + _cantidadSubida;
+        } else if (_indexStat == 2) {
+            _myPokemon.defensa = _myPokemon.defensa + _cantidadSubida;
+        } else if (_indexStat == 3) {
+            _myPokemon.ataqueEspecial = _myPokemon.ataqueEspecial + _cantidadSubida;
+        } else if (_indexStat == 4) {
+          _myPokemon.defensaEspecial = _myPokemon.defensaEspecial + _cantidadSubida;
+        } else {
+          _myPokemon.velocidad = _myPokemon.velocidad + _cantidadSubida;
+        }
     }
     
 }

@@ -2,10 +2,27 @@
 pragma solidity ^0.8.20;
 //Imports
 import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
+import "./Trainer.sol";
 
-
-contract PokeOwnership is ERC1155 {
+contract PokeOwnership is ERC1155, Trainer {
     constructor() ERC1155("https://ipfs.io/ipfs/{id}") { }
+
+        struct Pokemon {
+        string name;
+        string elemento;
+        uint readyTime;
+        uint8 level;
+        uint32 hpPokemon;
+        //uint8 para obtimizar los costes de gas tenemos 256 maximo
+        uint8 ataque;
+        uint8 defensa;
+        uint8 ataqueEspecial;
+        uint8 defensaEspecial;
+        uint8 velocidad;
+    }
+
+    //Array de pokemons
+    Pokemon[] public pokemons;
 
     //Para guardar el dueño de un pokemon, vamos a usar dos mapeos: el primero guardará el rastro de la dirección 
     //que posee ese pokemon y la otra guardará el rastro de cuantos pokemon posee cada propietario.
@@ -16,18 +33,30 @@ contract PokeOwnership is ERC1155 {
         _mintBatch( _trainer,  _ids,  _amounts, "");
     }
 
-    function _transfer(address _from, address _to) private {
+    function _transfer(address _from, address _to, uint _tokenId) private {
         ownerPokemonCount[_to]++;
         ownerPokemonCount[_from]--;
-
         pokemonToOwner[_tokenId] = _to;
+        // Recuperar el índice del entrenador
+        uint indexF = addressToEntrenadorIndex[msg.sender];
+        // Le suma uno al recuento de pokemons totales
+        entrenadores[indexF].numPokemons--;
+        uint indexT = addressToEntrenadorIndex[_to];
+        // Le suma uno al recuento de pokemons totales
+        entrenadores[indexT].numPokemons++; 
     }
 
     function safeTransferFrom(address _from, address _to, uint256 _id, uint256 _value, bytes memory _data) public override {
-        //Cuando no es moneda hay que actualizar los mapping de los pokemons
         if(_id != 1){
-            _transfer(_from, _to, _data);
+          uint pokeid  = abi.decode(_data, (uint256));
+            for (uint256 i = 0; i < pokemons.length; i++) {
+                //ademas se comprueba que el id que se pasa el dueño sea el que toca
+                if (pokemonToOwner[i] == _from && i == pokeid) {
+                    _transfer(_from, _to, pokeid);
+                }
+            }
         }
+        super.safeTransferFrom(_from, _to, _id, _value, _data);
         
     }
     /*

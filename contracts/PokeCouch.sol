@@ -10,71 +10,43 @@ contract PokeCouch is PokemonFactory {
         require(pokemonToOwner[_pokemonId] == msg.sender, "No eres el propietario de este Pokemon.");
         _;
     }
-
-    //Funcion para simular batallas pokemon con bots(Cambiar el pokemon enemigo y capturar)
-  function battle(uint _pokemonId) public propietario(_pokemonId) {
-
-    // Obtener el Pokémon del jugador
-    Pokemon storage pokemonJugador = pokemons[_pokemonId];
-
-    // Crear el Pokémon enemigo
-    //createEnemyPokemon();
     
-    // Obtener el Pokémon enemigo
-    uint idEnemigo = pokemons.length - 1;
-    Pokemon storage pokemonEnemigo = pokemons[idEnemigo];
+    uint randNonce = 0;
+    
+    function randMod(uint _modulus) internal returns(uint) {
+        randNonce++;
+        return uint(keccak256(abi.encodePacked(block.timestamp, msg.sender, randNonce))) % _modulus;
+    }
 
-    // Inicializamos puntos de salud (HP)
-    uint hpJugador = pokemonJugador.hpPokemon;
-    uint hpEnemigo = pokemonEnemigo.hpPokemon;
+    //Comprueba que el pokemon este recuperado
+    function _isReady(Pokemon storage _pokemon) internal view returns (bool) {
+        return (_pokemon.readyTime <= block.timestamp);
+    }
 
-    // Simular el combate
-    while (hpJugador > 0 && hpEnemigo > 0) {
-        // Turno del jugador
-        if (pokemonJugador.velocidad >= pokemonEnemigo.velocidad) {
-            uint damageJugador = (pokemonJugador.ataque + pokemonJugador.ataqueEspecial) / 2;
-            hpEnemigo = hpEnemigo > damageJugador ? hpEnemigo - damageJugador : 0;
+        //Dispara el timepo de recuperacion de un pokemon
+    function _disparadorDeRecu(Pokemon storage _pokemon) internal {
+        _pokemon.readyTime = uint32(block.timestamp + tiempoRecu);
+    }
 
-            // Verificar si el enemigo ha sido derrotado
-            if (hpEnemigo == 0) {
-                // El jugador ha ganado, eliminamos al Pokémon enemigo
-                //_removePokemon(idEnemigo);
-                return;
-            }
-
-            // Turno del enemigo
-            uint damageEnemigo = (pokemonEnemigo.ataque + pokemonEnemigo.ataqueEspecial) / 2;
-            hpJugador = hpJugador > damageEnemigo ? hpJugador - damageEnemigo : 0;
-
-            // Verificar si el jugador ha sido derrotado
-            if (hpJugador == 0) {
-                return;
-            }
+    //Funcion para simular batallas pokemon con bots de estats aleatorias 
+    function pokeBattleSalvaje(uint _pokemonId) public propietario(_pokemonId) {
+        Pokemon storage myPokemon = pokemons[_pokemonId];
+        uint statsPoke = myPokemon.ataque + myPokemon.ataqueEspecial + myPokemon.defensa + myPokemon.defensaEspecial + myPokemon.hpPokemon + myPokemon.velocidad;
+        require(_isReady(myPokemon));
+        uint poderWild = randMod(100000);
+        uint _statsWild = _statsWildPokemon(poderWild);
+        //si pierdes
+        if ( _statsWild >= statsPoke) {
+            _disparadorDeRecu(myPokemon);
         } else {
-            // Turno del enemigo primero
-            uint damageEnemigo = (pokemonEnemigo.ataque + pokemonEnemigo.ataqueEspecial) / 2;
-            hpJugador = hpJugador > damageEnemigo ? hpJugador - damageEnemigo : 0;
-
-            // Verificar si el jugador ha sido derrotado
-            if (hpJugador == 0) {
-                return;
-            }
-
-            // Turno del jugador
-            uint damageJugador = (pokemonJugador.ataque + pokemonJugador.ataqueEspecial) / 2;
-            hpEnemigo = hpEnemigo > damageJugador ? hpEnemigo - damageJugador : 0;
-
-            // Verificar si el enemigo ha sido derrotado
-            if (hpEnemigo == 0) {
-                // El jugador ha ganado, eliminamos al Pokémon enemigo
-                //_removePokemon(idEnemigo);
-                return;
-            }
+            uint8 indexStat = uint8(poderWild % 10);
+            uint8 cantidadSubida = uint8((poderWild/10) % 10);
+            _modificacionEstats(myPokemon,indexStat,cantidadSubida );
         }
     }
-  }
 
-    function trainPokemon(uint _pokemonId) public propietario(_pokemonId) {
+    /*
+    function trainPokemon(uint _pokemonId) private propietario(_pokemonId) {
 
         // Obtener el Pokémon del jugador
         Pokemon storage pokemon = pokemons[_pokemonId];
@@ -82,15 +54,16 @@ contract PokeCouch is PokemonFactory {
         // Aumentar estadísticas de forma aleatoria
         uint rand = uint(keccak256(abi.encodePacked(block.timestamp, msg.sender, _pokemonId))) % 5;
 
-        //Aumento estadísticas
+        Aumento estadísticas
         pokemon.ataque += rand;
         pokemon.defensa += rand;
         pokemon.velocidad += rand;
         pokemon.ataque += rand;
         pokemon.defensa += rand;
         pokemon.hpPokemon += rand;
+        
     }
-
+    
     function capturePokemon(uint _enemyId) public {
         // Verificar que el ID del Pokémon sea válido
         require(_enemyId < pokemons.length, "ID de Pokemon invalido.");
@@ -101,4 +74,5 @@ contract PokeCouch is PokemonFactory {
         pokemonToOwner[_enemyId] = msg.sender;
         ownerPokemonCount[msg.sender]++;
     }
+    */
 }

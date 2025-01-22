@@ -537,6 +537,25 @@
 				"inputs": [
 					{
 						"internalType": "address",
+						"name": "_owner",
+						"type": "address"
+					}
+				],
+				"name": "getPokemonByOwner",
+				"outputs": [
+					{
+						"internalType": "uint256[]",
+						"name": "",
+						"type": "uint256[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
 						"name": "account",
 						"type": "address"
 					},
@@ -1132,19 +1151,19 @@
 			]
 		},
 		"contracts/PokeOwnership.sol": {
-			"keccak256": "0x76243ce8cf919bba4c3a64f375d5cfaeedd71bb696b185e061362d2c83f0aacb",
+			"keccak256": "0xb3cebd39afb7c994b38c2a959893ff22b387b8730c064aba97fa6ec5abe59854",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://100db0c4006c8d0331da546106bd341ff6f19b4b81ed64b7e92bc263b11f18d3",
-				"dweb:/ipfs/Qmf2azcweGSXUw651E9yuHqEpQfn8vKQ6KWsAD8ZtwEYEU"
+				"bzz-raw://99c49bf07a200640bf8243e69014f2f17b283408ab1fda87efefb5edb35f32f0",
+				"dweb:/ipfs/QmW68G8NkDQwtBTmh4hSYsTt2nSTAYQAYbtZDGqf6Pzt3j"
 			]
 		},
 		"contracts/PokemonFactory.sol": {
-			"keccak256": "0x46b6a2f902f82f02096cda058692792397fa768515a3daf43e7b5dd4f8cb316b",
+			"keccak256": "0x3b89e923dd47d2b426490e7e5375577745959ff88fb8b7190b491abeaab4a027",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://59ad0d2cf040b2f166dc5044edb820cb6afcf00466ae12ee55b1d35f04663be6",
-				"dweb:/ipfs/QmUe25ASTJXqZ6fQhKE1F8wesLEpf38Qk4m4xjyozcFG52"
+				"bzz-raw://8699c82fad60ce4ca6aa14d103013303a7503df10ccde0bc2614d93043884af2",
+				"dweb:/ipfs/QmSAATANrh6NUknvMcxtFSVeicbLmb49tt4pZd51eAwTA5"
 			]
 		},
 		"contracts/Trainer.sol": {
