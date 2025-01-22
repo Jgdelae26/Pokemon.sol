@@ -48,6 +48,44 @@ En cuanto a la lógica de las batallas, entre Pokémon, he pensado en implementa
 Por utlimo, se tendria que añadir un timepo de enfriamiento en caso de derrota ha dicho pokemon, añadir una variable de vida para cada pokemon, idear un sistema de emparejamiento para las batallas por nivel. Variable estado para saber si esta en batalla y limite de tiempo para las batallas.
 Cuando se gana tambien habra un intercambio de monedas del juego, el perdedor le debera pagar al gandor.  
 
+## Trainer.sol
+  
+Este contrato extiende las funcionalidades de PokemonFactory y gestiona a los entrenadores, incluyendo registro, actualización de estadísticas y consulta de ranking.
+
+Características principales:
+
+·Registro de Entrenadores:
+
+  -Función registrarEntrenador: Permite a los usuarios registrarse como entrenadores asignándoles un nombre único.
+  Emite el evento EntrenadorRegistrado para notificar el registro.
+  Gestión del Nombre de Entrenador:
+  
+  -Función cambiarNombre: Permite a un entrenador registrado cambiar su nombre.
+  Emite el evento CambioDeNombre al realizar el cambio.
+  Consulta de Datos:
+  
+  -Función consultarEntrenador: Retorna la información del entrenador, como victorias, derrotas y nombre, utilizando su dirección.
+  Actualización de Estadísticas:
+  
+  -Función actualizarVictorias: Permite al administrador (onlyOwner) actualizar las victorias o derrotas de un entrenador.
+  Ranking de Entrenadores:
+  
+  -Función obtenerRanking: Devuelve una lista de entrenadores ordenados por número de victorias usando el algoritmo QuickSort.
+
+  -Función eliminarEntrenador: Eliminar un entrenador y todos sus Pokémon asociados usando la funcion auxiliar de compactarArrayPokemons.
+
+·Funciones Auxiliares:
+
+  -QuickSort: Algoritmo recursivo para ordenar el ranking de entrenadores según sus victorias.
+
+  -compactarArrayPokemons: Elimina los huecos en el array de Pokémon después de la eliminación de los Pokémons.
+
+·Seguridad:
+
+  -Modificador registrado: Verifica que el entrenador esté registrado antes de realizar ciertas acciones.
+
+  -Modificador onlyOwner: Restringe funciones administrativas al propietario del contrato.
+
 ## Adquisicion de pokemons 
 Una forma sera comprandolos por PokeCoins, los cuales se obtendran al ganar batallas.
 
