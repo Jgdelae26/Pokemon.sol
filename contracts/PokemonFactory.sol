@@ -8,8 +8,6 @@ import "./Trainer.sol";
 
 contract PokemonFactory is PokeOwnership, Trainer {
 
-
-
     //para generar eventos a nivel de web3
     event NewPokemon(uint pokemonId, string name, uint poder);
 
@@ -33,18 +31,13 @@ contract PokemonFactory is PokeOwnership, Trainer {
         uint8 velocidad;
     }
 
-
-
     //Array de pokemons
     Pokemon[] public pokemons;
 
-
-
-    //Para guardar el dueño de un pokemon, vamos a usar dos mapeos: el primero guardará el rastro de la dirección 
-    //que posee ese pokemon y la otra guardará el rastro de cuantos pokemon posee cada propietario.
+    /*Mappings moved to the base contract
     mapping (uint => address) public pokemonToOwner;
     mapping (address => uint) ownerPokemonCount;
-
+    */
 
     //Funcion principal para crear pokemons arraigados a un entrenador. Internal porque nos interesa que contratos que hereden de este puedan emplearla.
     function _createPokemon(string memory _name, uint8 _idEspecie, string memory _elemento, uint16  _poder) internal {
