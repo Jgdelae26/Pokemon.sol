@@ -9,8 +9,7 @@ Para definir las bases de nuestra aplicacion de desarrollo Web3 nos hemos basado
 - Lec 1: Funcionamiento basico de solidity, patron de diseño de la fabrica de pokemons. Aleteoriedad basica.
 - Lec 2: Fucnionamiento un poco mas avanzado y interaccion con direcciones de la blockchain, visibilidad de las funciones, Storage vs Memory.
 - Lec 3: Conceptos blockchain: inmutabilidad y gas. Incorporacion del contrato Ownable. Funciones con gestion de tiempo.
-- Lec 4: 
-- Lec 5:  
+- Lec 5: Implementacion del ERC 721 que ha servido para tener una intuicion de como incorporar las interfazes de los estandar y las ventajas que estos nos ofrecen. 
 
 ## Punto de partida
 
