@@ -49,7 +49,7 @@ Por utlimo, se tendria que añadir un timepo de enfriamiento en caso de derrota 
 Cuando se gana tambien habra un intercambio de monedas del juego, el perdedor le debera pagar al gandor.  
 
 ## Adquisicion de pokemons 
-Una forma sera comprnadolos por PokeCoins, los cuales se obtendran al ganar batallas.
+Una forma sera comprandolos por PokeCoins, los cuales se obtendran al ganar batallas.
 
 
 ## Futuras mejoras
